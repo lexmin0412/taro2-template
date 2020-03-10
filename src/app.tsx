@@ -2,12 +2,18 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import '@tarojs/async-await'
 import { Provider } from '@tarojs/redux'
 import dva from '~/utils/dva'
+
 import models from '~/models/index'
 import { checkUpdate } from '~/utils/mp'
-
 import Index from './pages/home/index'
 
 import './app.scss'
+
+// h5非生产环境添加vconsole
+if (process.env.TARO_ENV === 'h5' && process.env.NODE_ENV !== 'production') {
+	const VConsole = require('vconsole')
+	new VConsole()
+}
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -47,11 +53,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // 检查更新
-    checkUpdate()
   }
 
-  componentDidShow() { }
+  componentDidShow() {
+    // 检查更新
+		checkUpdate()
+	}
 
   componentDidHide() { }
 

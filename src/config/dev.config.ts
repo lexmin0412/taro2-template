@@ -1,10 +1,10 @@
 const config = {
-  php: {
-    url: 'https://wldoperation.58wld.com'
-  },
-  javaMapi: {
-    url: 'https://mapi.58wld.com/weleadin-web-mapi'
-  },
+	apisJuhe: {
+		url: 'http://apis.juhe.cn'
+	},
+	vJuhe: {
+		url: 'http://v.juhe.cn'
+	},
   md5: {
     key: '123456',
   },

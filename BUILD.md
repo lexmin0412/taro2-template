@@ -1,4 +1,4 @@
-# Taro项目模版
+# Taro项目模版搭建过程
 
 https://www.jianshu.com/p/71e209987c83
 
@@ -217,18 +217,18 @@ export default config
 
 ```ts
 declare const process: {
-	env: {
-		/**
-		 * taro环境变量
-		 */
-		TARO_ENV: 'weapp' | 'swan' | 'alipay' | 'h5' | 'rn' | 'tt' | 'quickapp' | 'qq';
-		/**
-		 * node环境变量
-		 */
-		NODE_ENV: 'development' | 'uat' | 'production';
-		/**
-		 * 扩展其他属性
-		 */
+  env: {
+    /**
+     * taro环境变量
+     */
+    TARO_ENV: 'weapp' | 'swan' | 'alipay' | 'h5' | 'rn' | 'tt' | 'quickapp' | 'qq';
+    /**
+     * node环境变量
+     */
+    NODE_ENV: 'development' | 'uat' | 'production';
+    /**
+     * 扩展其他属性
+     */
     [key: string]: any;
   }
 }
@@ -252,41 +252,41 @@ let dispatch;
  * @param opt
  */
 function createApp(opt) {
-	// redux日志 仅开发和测试环境打开
-	if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'uat') {
-		const {createLogger} = require('redux-logger');
-		opt.onAction = [createLogger()];
-	}
-	app = create(opt);
-	app.use(createLoading({}));
-	
-	// 适配支付宝小程序
-	if (Taro.getEnv() === Taro.ENV_TYPE.ALIPAY) {
-		// @ts-ignore
-		global = {};
-	}
-	
-	// @ts-ignore
-	if (!global.registered) opt.models.forEach(model => app.model(model));
-	// @ts-ignore
-	global.registered = true;
-	
-	app.start();
-	
-	store = app._store;
-	app.getStore = () => store;
-	
-	dispatch = store.dispatch;
-	
-	app.dispatch = dispatch;
-	return app;
+  // redux日志 仅开发和测试环境打开
+  if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'uat') {
+    const {createLogger} = require('redux-logger');
+    opt.onAction = [createLogger()];
+  }
+  app = create(opt);
+  app.use(createLoading({}));
+  
+  // 适配支付宝小程序
+  if (Taro.getEnv() === Taro.ENV_TYPE.ALIPAY) {
+    // @ts-ignore
+    global = {};
+  }
+  
+  // @ts-ignore
+  if (!global.registered) opt.models.forEach(model => app.model(model));
+  // @ts-ignore
+  global.registered = true;
+  
+  app.start();
+  
+  store = app._store;
+  app.getStore = () => store;
+  
+  dispatch = store.dispatch;
+  
+  app.dispatch = dispatch;
+  return app;
 }
 
 export default {
-	createApp,
-	getDispatch() {
-		return app.dispatch;
-	}
+  createApp,
+  getDispatch() {
+    return app.dispatch;
+  }
 };
 
 ```
@@ -325,11 +325,12 @@ export default function(chain) {
 
 在taro中使用async/awiat
 
-```
+```shell
 yarn add @tarojs/async-await
 ```
 
 app.js
+
 ```js
 // src/app.js
 import '@tarojs/async-await'

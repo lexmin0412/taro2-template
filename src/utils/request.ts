@@ -1,3 +1,7 @@
+/**
+ * 请求基类
+ */
+
 import Taro from '@tarojs/taro'
 import { INTERCEPTOR_HEADER } from '~/constants/header'
 import hostConfig from '~/config/index.config'
@@ -6,11 +10,28 @@ import hostInterceptor from '~/interceptors/host.interceptor'
 import delInterceptor from '~/interceptors/del.interceptor'
 import dataInterceptor from '~/interceptors/data.interceptor'
 
-console.log('hostconfig', hostConfig)
+
+// 添加拦截器
+const interceptors = [
+	hostInterceptor,
+	headerInterceptor,
+	dataInterceptor,
+	delInterceptor,
+	Taro.interceptors.logInterceptor,
+	Taro.interceptors.timeoutInterceptor
+]
+interceptors.forEach(interceptorItem=>Taro.addInterceptor(interceptorItem))
 
 interface IOptions {
   hostKey: string;
   [key: string]: any;
+}
+
+interface IRequestConfig {
+	url: string;
+	data?: any,
+	method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+	[key: string]: any;
 }
 
 class BaseRequest {
@@ -27,8 +48,9 @@ class BaseRequest {
     method,
     header = { 'Content-Type': 'application/json' },
     dataType = 'json',
-    responseType = 'text',
-  }) {
+		responseType = 'text',
+		showToast = true
+  }: IRequestConfig) {
 
     // 添加自定义请求头，用于host和header处理
     const hostKey = this.options ? this.options.hostKey : '';
@@ -41,14 +63,9 @@ class BaseRequest {
     }
     header[INTERCEPTOR_HEADER] = {
       hostKey,
-      hostUrl
-    }
-
-    // 添加拦截器
-    Taro.addInterceptor(hostInterceptor)
-    Taro.addInterceptor(headerInterceptor)
-    Taro.addInterceptor(dataInterceptor)
-    Taro.addInterceptor(delInterceptor)
+			hostUrl,
+			showToast
+		}
 
     return Taro.request({
       url,
@@ -58,16 +75,53 @@ class BaseRequest {
       dataType,
       responseType,
     })
-  }
+	}
 
-  public post({
-    url,
-    data
+	public get(payload: {
+		url: string;
+		data: any;
+		showToast?: boolean;
+		header?: any
+	}) {
+		return this.request({
+			method: 'GET',
+			...payload
+		})
+	}
+
+  public post(payload: {
+    url: string,
+    data: any,
+		showToast?: boolean;
+		header?: any
   }) {
     return this.request({
       method: 'POST',
-      url,
-      data
+      ...payload
+    })
+	}
+
+	public put(payload: {
+    url: string,
+    data: any,
+		showToast?: boolean;
+		header?: any
+  }) {
+    return this.request({
+      method: 'PUT',
+      ...payload
+    })
+	}
+
+	public delete(payload: {
+    url: string,
+    data: any,
+		showToast?: boolean;
+		header?: any
+  }) {
+    return this.request({
+      method: 'DELETE',
+      ...payload
     })
   }
 }
