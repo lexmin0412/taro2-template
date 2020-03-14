@@ -1,6 +1,39 @@
-# Taro + Dva + TypeScript + Scss 项目模板
+# Taro 2.0 项目模版
 
-## Build Setup
+> 说明：master分支跟随taro最新稳定版分支而更新，1.0版本的项目模板请前往 `release-1.0.0` 分支获取，[点此前往](https://github.com/cathe-zhang/taro_template/tree/release-1.0.0/)
+
+## 导航
+
+- [项目结构](#项目结构)
+- [TODO](#TODO)
+- [Setup](#Setup)
+- [开发](#开发)
+  - [新建页面](#新建页面)
+    - [静态资源导入规范](#静态资源导入规范)
+    - [类名规范](类名规范)
+- [请求数据](#请求数据)
+  - [创建service](#创建service)
+  - [service文件设计规范](#service文件设计规范)
+  - [直接调用service获取数据](#直接调用service获取数据)
+  - [通过dva获取数据](#通过dva获取数据)
+- [使用组件](#使用组件)
+- [技术栈](#技术栈)
+- [项目文档](#项目文档)
+
+## 项目结构
+
+以下是项目结构的缩略图
+
+![项目结构](./structure.png)
+
+## TODO
+
+- [ ] 完善文件结构，实现1.0版本的所有功能
+- [ ] Hooks重构
+- [ ] README更新，如dva改成mobx
+- [ ] 新增生成命令，能够做到一键生成文件
+
+## Setup
 
 ```zsh
 # 获取模版
@@ -11,35 +44,6 @@ cd taro_template
 yarn
 # 本地浏览器运行
 yarn dev:h5
-```
-
-## 项目结构
-
-### 目录
-
-```tree
-├── dist                   编译结果目录
-├── config                 编译配置目录
-|   ├── dev.js             开发时配置
-|   ├── index.js           默认配置
-|   └── uat.js             测试打包配置
-|   └── prod.js            生产打包配置
-├── src                    源码目录
-|   ├── asstes             静态资源存放
-|   ├── components         常规组件文件夹
-|   ├── config             配置存放文件夹
-|   ├── constants          常量存放文件夹
-|   ├── enums              枚举
-|   ├── interceptors       taro接口拦截器
-|   ├── interfaces         接口存放
-|   ├── models             dva 的 model
-|   ├── pages              页面文件夹
-|   ├── services           服务类文件夹
-|   ├── styles             项目通用样式
-|   ├── utils              工具类存放文件夹
-|   └── app.tsx            项目入口文件
-└── package.json           项目依赖配置
-└── tsconfig.json          ts编译配置文件
 ```
 
 ## 开发
@@ -151,9 +155,9 @@ yarn dev:h5
   import './index.scss'
   ```
 
-  #### 样式类名命名规范
+  #### 类名规范
 
-  - 页面容器应以模块-文件名-容器类型命名，如 home-index-page, line-component 等
+  - 页面容器应以模块-文件名-容器类型命名，如 home-index-page, line-comp 等
 
 - 样式
 
@@ -211,11 +215,11 @@ export type IProps = IPageStateProps & IPageDispatchProps & IPageOwnProps;
 
 在页面中请求数据，需要先做一个判断：当前这个接口的数据需不需要跨页面共享，如果不需要，那么就没有必要经过dva，直接调用 service 即可；反之则需要定义 model , 在页面上发起 action, 走 dva 的流程。
 
-#### 创建 service
+#### 创建service
 
 service, 也就是我们的服务模块，用于统一存放后端接口定义，供页面调用。
 
-**`service` 文件设计规范**
+**`service`文件设计规范**
 
 由于同一个接口被不同页面调用调用的可能性非常高，服务模块的结构需要依照后端接口来设计，如同时拥有 java 和 php 两个后端，那么 service 模块就要分成两个大的模块，大的模块下面再根据接口模块划分来划分小的 service 文件。
 
@@ -233,7 +237,7 @@ service, 也就是我们的服务模块，用于统一存放后端接口定义�
 |   ├── php         php
 ```
 
-#### 直接调用 service 获取数据
+#### 直接调用service获取数据
 
 ```tsx
 import MicangPhpService from '~/services/php/micang.php.service'
@@ -277,7 +281,7 @@ class Index extends Component {
 }
 ```
 
-#### 通过 dva 获取数据
+#### 通过dva获取数据
 
 ##### 1. 定义 model
 
@@ -428,12 +432,11 @@ class Index extends Component {
 
 - [taro](https://nervjs.github.io/taro/docs/README.html)
 - [taro-ui](https://taro-ui.aotu.io/)
-- [dvajs](https://dvajs.com/guide/)
+- [mobx](https://cn.mobx.js.org/)
 - [typescript](https://www.tslang.cn/docs/handbook/basic-types.html)
 - [scss](https://www.sass.hk/)
 
 ## 项目文档
 
-- [更新日志](./CHANGELOG.md)
-- [开发计划](./TODO.md)
 - [项目搭建文档](./NOTE.md)
+- [常见问题记录](./problems.md)

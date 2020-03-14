@@ -1,6 +1,5 @@
 /**
  * taro toast封装简化
- * 由于默认的 loading 和 toast api 需要传入太多的配置参数 但在一个项目中绝大多数场景用到的配置都是相同的 这里参考 antd-m 的 toast api 来做封装处理
  */
 
 import Taro from '@tarojs/taro'
@@ -17,10 +16,7 @@ class Toast {
     Taro.hideLoading()
 	}
 
-	/**
-	 * 弹出错误 不展示icon
-	 * @param errMsg 需要展示的错误信息
-	 */
+	// toast错误
 	error(errMsg: string) {
 		Taro.showToast({
 			title: errMsg,

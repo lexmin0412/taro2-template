@@ -1,9 +1,24 @@
+/**
+ * 用于在taro之前根据环境生成不同的project.config.json
+ */
 
+const fs = require('fs')
+
+console.log('构建环境标识', process.argv[2])
+
+// 获取node project.js传过来的环境参数
+const env = process.argv[2]
+console.log('开始编译小程序project.config.json', env)
+
+const appid = env === 'pro' ? require('./../build/defineConstants/pro').APP_CONF.APPID : require('./../build/defineConstants/index').APP_CONF.APPID
+console.log('appid', appid)
+
+const projectConfig = `
 {
   "miniprogramRoot": "./dist",
   "projectname": "taro-template",
   "description": "taro2.0项目模板",
-  "appid": "wx0b32dc740be4b1f5",
+  "appid": "${appid}",
   "setting": {
     "urlCheck": true,
     "es6": false,
@@ -41,3 +56,6 @@
 		}
 	}
 }
+`
+
+fs.writeFileSync('./project.config.json', projectConfig)

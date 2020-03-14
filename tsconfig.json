@@ -30,8 +30,6 @@
       "~/assets/*": ["src/assets/*"],
       "~/components": ["src/components/"],
       "~/components/*": ["src/components/*"],
-      "~/config": ["src/config/"],
-      "~/config/*": ["src/config/*"],
       "~/constants": ["src/constants/"],
       "~/constants/*": ["src/constants/*"],
       "~/enums": ["src/enums/"],

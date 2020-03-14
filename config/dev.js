@@ -1,13 +1,8 @@
+const defineConstants = require('./../build/defineConstants/dev')
+
 module.exports = {
   env: {
-    NODE_ENV: '"development"'
+    NODE_ENV: '"dev"'
   },
-  defineConstants: {
-  },
-  weapp: {},
-  h5: {
-		devServer: {
-			port: 3333
-		}
-	}
+  defineConstants
 }

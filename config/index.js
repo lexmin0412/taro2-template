@@ -1,14 +1,16 @@
 const path = require('path')
+const defineConstants = require('./../build/defineConstants/index')
 
 const config = {
-  projectName: 'taro-template',
-  date: '2019-11-26',
+  projectName: 'taro_2_template',
+  date: '2020-3-10',
   designWidth: 750,
   deviceRatio: {
     '640': 2.34 / 2,
     '750': 1,
     '828': 1.81 / 2
   },
+  defineConstants: defineConstants,
   // 解析alias路径
   alias: {
     '~/': path.resolve(__dirname, '..', 'src/'),
@@ -27,60 +29,48 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: {
-    babel: {
-      sourceMap: true,
-      presets: [
-        ['env', {
-          modules: false
-        }]
-      ],
-      plugins: [
-        'transform-decorators-legacy',
-        'transform-class-properties',
-        'transform-object-rest-spread'
-      ]
-    }
-  },
-  defineConstants: {
-  },
-  copy: {
-    patterns: [
+  babel: {
+    sourceMap: true,
+    presets: [
+      ['env', {
+        modules: false
+      }]
     ],
-    options: {
-    }
+    plugins: [
+      'transform-decorators-legacy',
+      'transform-class-properties',
+      'transform-object-rest-spread'
+    ]
   },
-  weapp: {
-    module: {
-      postcss: {
-        autoprefixer: {
-          enable: true,
-          config: {
-            browsers: [
-              'last 3 versions',
-              'Android >= 4.1',
-              'ios >= 8'
-            ]
-          }
-        },
-        pxtransform: {
-          enable: true,
-          config: {
+  mini: {
+    postcss: {
+      autoprefixer: {
+        enable: true,
+        config: {
+          browsers: [
+            'last 3 versions',
+            'Android >= 4.1',
+            'ios >= 8'
+          ]
+        }
+      },
+      pxtransform: {
+        enable: true,
+        config: {
 
-          }
-        },
-        url: {
-          enable: true,
-          config: {
-            limit: 10240 // 设定转换尺寸上限
-          }
-        },
-        cssModules: {
-          enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
-          config: {
-            namingPattern: 'module', // 转换模式，取值为 global/module
-            generateScopedName: '[name]__[local]___[hash:base64:5]'
-          }
+        }
+      },
+      url: {
+        enable: true,
+        config: {
+          limit: 10240 // 设定转换尺寸上限
+        }
+      },
+      cssModules: {
+        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+        config: {
+          namingPattern: 'module', // 转换模式，取值为 global/module
+          generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
     }
@@ -88,34 +78,22 @@ const config = {
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
-    esnextModules: ['taro-ui', 'taro-cui'],
-		output: {
-			// 输出配置 hash
-			filename: 'js/[name].[hash:8].js',
-			chunkFilename: 'js/[name].[chunkhash:8].js'
-    },
-		miniCssExtractPluginOption: {
-			filename: 'css/[name].[hash:8].css',
-			chunkFilename: 'css/[id].[chunkhash:8].css'
-		},
-    module: {
-      postcss: {
-        autoprefixer: {
-          enable: true,
-          config: {
-            browsers: [
-              'last 3 versions',
-              'Android >= 4.1',
-              'ios >= 8'
-            ]
-          }
-        },
-        cssModules: {
-          enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
-          config: {
-            namingPattern: 'module', // 转换模式，取值为 global/module
-            generateScopedName: '[name]__[local]___[hash:base64:5]'
-          }
+    postcss: {
+      autoprefixer: {
+        enable: true,
+        config: {
+          browsers: [
+            'last 3 versions',
+            'Android >= 4.1',
+            'ios >= 8'
+          ]
+        }
+      },
+      cssModules: {
+        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+        config: {
+          namingPattern: 'module', // 转换模式，取值为 global/module
+          generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
     }
@@ -123,11 +101,15 @@ const config = {
 }
 
 module.exports = function (merge) {
-  if (process.env.NODE_ENV === 'development') {
-    return merge({}, config, require('./dev'))
+  let exportConfig = {}
+  if (process.env.NODE_ENV === 'pro') {
+    exportConfig = merge({}, config, require('./pro'))
+  } else if ( process.env.NODE_ENV === 'sit' ) {
+    exportConfig = merge({}, config, require('./sit'))
   } else if ( process.env.NODE_ENV === 'uat' ) {
-    return merge({}, config, require('./uat'))
-	} else {
-		return merge({}, config, require('./prod'))
-	}
+    exportConfig = merge({}, config, require('./uat'))
+  } else {
+    exportConfig = merge({}, config, require('./dev'))
+  }
+  return exportConfig
 }

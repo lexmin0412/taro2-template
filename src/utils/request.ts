@@ -3,13 +3,13 @@
  */
 
 import Taro from '@tarojs/taro'
-import { INTERCEPTOR_HEADER } from '~/constants/header'
-import hostConfig from '~/config/index.config'
+import Constants from '~/constants/index'
 import headerInterceptor from '~/interceptors/header.interceptor'
-import hostInterceptor from '~/interceptors/host.interceptor'
+import hostInterceptor from '~/interceptors/url.interceptor'
 import delInterceptor from '~/interceptors/del.interceptor'
 import dataInterceptor from '~/interceptors/data.interceptor'
 
+console.log('hostconfig', APP_CONF)
 
 // 添加拦截器
 const interceptors = [
@@ -46,7 +46,9 @@ class BaseRequest {
     url,
     data,
     method,
-    header = { 'Content-Type': 'application/json' },
+    header = {
+			'Content-Type': 'application/json'
+		},
     dataType = 'json',
 		responseType = 'text',
 		showToast = true
@@ -57,11 +59,11 @@ class BaseRequest {
     if ( !hostKey ) {
       throw "请指定service key";
     }
-    const hostUrl = hostConfig[hostKey]
+    const hostUrl = APP_CONF[hostKey]
     if ( !hostUrl ) {
       throw `找不到 hostkey: ${hostKey} 对应的host 配置`;
     }
-    header[INTERCEPTOR_HEADER] = {
+    header[Constants.INTERCEPTOR_HEADER] = {
       hostKey,
 			hostUrl,
 			showToast
