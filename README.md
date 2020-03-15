@@ -1,6 +1,67 @@
 # Taro 2.0 项目模版
 
-> 说明：master分支跟随taro最新稳定版分支而更新，1.0版本的项目模板请前往 `release-1.0.0` 分支获取，[点此前往](https://github.com/cathe-zhang/taro_template/tree/release-1.0.0/)
+> 说明：master 分支跟随 taro 最新稳定版分支而更新，当前基于taro 2.0，基于 taro 1.0 的项目模板请前往 `release-1.0.0` 分支获取，[点此前往](https://github.com/cathe-zhang/taro_template/tree/release-1.0.0/)
+
+## 功能列表
+
+- 语言
+  - [x] TypeScript
+  - [x] Sass
+  - [x] async/await支持
+- 状态管理
+  - [x] mobx
+- 接口请求
+  - [x] request类
+  - [x] 拦截器
+    - [x] url拦截器
+    - [x] header拦截器
+    - [x] data拦截器
+  - [ ] 开发环境本地代理
+  - [ ] jsonp支持
+- 调试
+  - [x] vconsole（h5环境）
+- 工程化
+  - [x] 全局变量
+  - [ ] 底层页面组件，用于其他页面继承，实现类似vue原型绑定的功能
+  - [ ] 通过命令一键生成文件
+- 组件
+  - [ ] image 图片组件 提供错误处理、loading过渡、查看大图等功能
+  - [ ] imgUploader 图片上传组件 基于image 提供上传图片、图片数量限制、删除图片、查看大图等功能
+  - [ ] paging 分页提示组件 将scrollerLoader, scrollerEndMessage合并成一个组件，减少判断
+  - [ ] card 卡片组件 提供圆角、阴影功能，可自定义类名、样式，包括背景色、圆角、宽高，内外边距
+  - [ ] 基础弹窗组件，可选择弹窗方式，包括中间弹窗、底部弹窗，可自定义关闭按钮
+  - [ ] 倒计时组件，可自定义结束时间、自定义倒计时长、是否展示天，自定义item样式
+  - [ ] 按钮组件，可自定义类名、自定义宽高、背景色、圆角、positionType
+- 工具类
+  - [x] mp.ts 小程序独有api封装（如检查更新）
+  - [x] toast.ts loading/toast api封装简化
+  - [x] page.ts 页面工具类，实现获取页面路由、跳转等功能
+  
+## TODO
+
+- [x] 完善文件结构，实现1.0版本的所有功能
+- [ ] Hooks重构
+- [ ] README更新，如dva改成mobx
+- [ ] 根据2.0迁移指南进行优化 https://nervjs.github.io/taro/docs/migrate-to-2.html
+
+## 升级问题处理
+
+### 使用 async/await 在小程序中报 `regeneratorRuntime is not defined`
+
+原因：没有async await支持  
+
+解决方案：
+
+- https://nervjs.github.io/taro/docs/async-await.html#docsNav
+- https://nervjs.github.io/taro/docs/migrate-to-2.html
+
+## 不想百度的操作
+
+### 切换npm源 
+
+  ```shell
+  npm config set registry https://registry.npmjs.org/
+  ```
 
 ## 导航
 
@@ -25,13 +86,6 @@
 以下是项目结构的缩略图
 
 ![项目结构](./structure.png)
-
-## TODO
-
-- [ ] 完善文件结构，实现1.0版本的所有功能
-- [ ] Hooks重构
-- [ ] README更新，如dva改成mobx
-- [ ] 新增生成命令，能够做到一键生成文件
 
 ## Setup
 
@@ -438,5 +492,4 @@ class Index extends Component {
 
 ## 项目文档
 
-- [项目搭建文档](./NOTE.md)
 - [常见问题记录](./problems.md)
