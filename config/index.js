@@ -1,4 +1,5 @@
 const path = require('path')
+const BuildPlugin = require('./../build/plugins/buildPlugin')
 
 const config = {
   projectName: 'taro_2_template',
@@ -26,8 +27,21 @@ const config = {
     '~/styles': path.resolve(__dirname, '..', 'src/styles'),
     '~/utils': path.resolve(__dirname, '..', 'src/utils'),
   },
+  // sass配置
+  sass: {
+    // 全局注入scss文件
+    resource: [
+      'src/styles/mixin.scss',
+      'src/styles/theme.scss'
+    ],
+    // 指定项目根目录，这样在resource字段中就不需要重复书写path.resolve了
+    projectDirectory: path.resolve(__dirname, '..')
+  },
   sourceRoot: 'src',
   outputRoot: 'dist',
+  plugins: [
+    new BuildPlugin()
+  ],
   babel: {
     sourceMap: true,
     presets: [
@@ -39,7 +53,7 @@ const config = {
       'transform-decorators-legacy',
       'transform-class-properties',
       'transform-object-rest-spread',
-      ['transform-runtime', {
+      ['transform-runtime', {   // async/await支持 替代taro1.0的tarojs/await
         "helpers": false,
         "polyfill": false,
         "regenerator": true,
@@ -68,7 +82,7 @@ const config = {
       url: {
         enable: true,
         config: {
-          limit: 10240 // 设定转换尺寸上限
+          limit: 10240 // 本地图片转base64上限（单位byte）
         }
       },
       cssModules: {
@@ -83,6 +97,25 @@ const config = {
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
+    router: {
+      mode: 'browser', // 或者是 'hash'
+      basename: '/h5', // 添加basesname为/h5后 使用taro路由跳转后的路径为 /h5/url 但在地址栏输入 url 和 /h5/url 都可以访问到对应的页面
+      customRoutes: {  // 自定义路由 跳转时还是需要使用app.tsx中定义的路由 但是地址栏会表现为自定义的路由 且通过地址栏输入可以访问到对应的页面
+        '/pages/index/index': '/index',
+        '/pages/lab/index': '/lab/index',
+        '/pages/user/index': '/user/index',
+      }
+    },
+    // js文件名添加hash
+		output: {
+			filename: 'js/[name].[hash:8].js',
+			chunkFilename: 'js/[name].[chunkhash:8].js'
+    },
+    // css文件名添加hash
+		miniCssExtractPluginOption: {
+			filename: 'css/[name].[hash:8].css',
+			chunkFilename: 'css/[id].[chunkhash:8].css'
+		},
     postcss: {
       autoprefixer: {
         enable: true,

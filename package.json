@@ -1,8 +1,8 @@
 {
-  "name": "taro_2_template",
-  "version": "1.0.0",
+  "name": "taro_template",
+  "version": "2.0.0",
   "private": true,
-  "description": "taro2.0 template",
+  "description": "基于taro2.0的开箱即用多端项目模版",
   "templateInfo": {
     "name": "mobx",
     "typescript": true,
@@ -24,7 +24,8 @@
     "build:h5": "taro build --type h5 --env dev",
     "build:h5-sit": "taro build --type h5 --env sit",
     "build:h5-uat": "taro build --type h5 --env uat",
-    "build:h5-pro": "taro build --type h5 --env pro"
+    "build:h5-pro": "taro build --type h5 --env pro",
+    "template": "node template/index.js"
   },
   "author": "",
   "license": "MIT",
@@ -46,7 +47,9 @@
     "mobx": "4.8.0",
     "nerv-devtools": "^1.5.5",
     "nervjs": "^1.5.5",
-    "regenerator-runtime": "0.11.1"
+    "regenerator-runtime": "0.11.1",
+    "taro-ui": "^2.3.1",
+    "wtils": "^0.2.0"
   },
   "devDependencies": {
     "@tarojs/cli": "2.0.6",
@@ -73,6 +76,7 @@
     "stylelint-config-taro-rn": "2.0.6",
     "stylelint-taro-rn": "2.0.6",
     "typescript": "^3.0.1",
-    "vconsole": "^3.3.4"
+    "vconsole": "^3.3.4",
+    "webpack-bundle-analyzer": "^3.6.1"
   }
 }

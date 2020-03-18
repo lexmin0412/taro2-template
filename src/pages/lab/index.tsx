@@ -4,6 +4,7 @@ import { View, Button, Text, Input } from '@tarojs/components'
 import { observer, inject } from '@tarojs/mobx'
 import { AtNoticebar, AtTag } from 'taro-ui'
 
+import TImage from '~/components/TImage/TImage'
 import QQMapWSService from '~/services/qqMap/ws.service'
 import LianouService from '~/services/hydee/lianou.service'
 import Toast from '~/utils/toast'
@@ -66,45 +67,6 @@ class Index extends Component {
 
   componentDidHide() { }
 
-  increment = () => {
-    const { testState } = this.state
-    this.setState({
-      testState: `${this.state.testState}expand`
-    })
-    const { counterStore } = this.props
-    counterStore.increment()
-  }
-
-  decrement = () => {
-    const { counterStore } = this.props
-    counterStore.decrement()
-  }
-
-  incrementAsync = () => {
-    const { counterStore } = this.props
-    counterStore.incrementAsync()
-  }
-
-  // 手机号输入
-  handleInput(type, e) {
-    this.setState({
-      phoneNumber: e.detail.value
-    })
-  }
-
-  // // 查询手机号归属地
-  // async queryMobile() {
-  //   console.log('into handleSearchBtnclick')
-  //   const { phoneNumber } = this.state
-  //   let result = await MobileService.queryMobile({
-  //     phoneNumber
-  //   })
-  //   const { data } = result
-  //   this.setState({
-  //     mobileText: `${data.province}${data.city}${data.company}`
-  //   })
-  // }
-
   async handleJSONPTest() {
     let result = await QQMapWSService.geocoder({
       location: `28.2532,112.87887`,
@@ -120,16 +82,27 @@ class Index extends Component {
     console.log('result', result)
   }
 
+  handleCustomRoute() {
+    console.error('into handleCustomRoute')
+    // Taro.switchTab({
+    //   url: '/pages/index/index'
+    // })
+    Taro.switchTab({
+      url: '/pages/comp/index'
+    })
+  }
+
+  hanldeCompTest(type) {
+    Taro.navigateTo({
+      url: `/pages/lab/comp?type=${type}`
+    })
+  }
+
   render() {
-    const { counterStore: { counter } } = this.props
-    const { testState, mobileText } = this.state
     return (
       <View className='index'>
-        <AtNoticebar>这是 NoticeBar 通告栏</AtNoticebar>
-        <AtTag size='small'>标签</AtTag>
-        <Input onInput={this.handleInput.bind(this, 'mobile')} type="number" placeholder="请输入手机号" />
-        {/* <Button onClick={this.queryMobile.bind(this)}>查询手机号归属地</Button> */}
-        {/* <View>归属地：{mobileText}</View> */}
+        <AtNoticebar>taro-ui组件测试：通告栏</AtNoticebar>
+        <AtTag size='small'>taro-ui组件测试：标签</AtTag>
         <Button onClick={this.handleJSONPTest.bind(this)}
           className="button-jsonp"
         >
@@ -138,11 +111,21 @@ class Index extends Component {
         <Button onClick={this.handleProxyText.bind(this)}>
           本地代理 测试
         </Button>
-        <Button onClick={this.increment}>+</Button>
-        <Button onClick={this.decrement}>-</Button>
-        <Button onClick={this.incrementAsync}>Add Async</Button>
-        <Button onClick={this.incrementAsync}>{testState}</Button>
-        <Text>{counter}</Text>
+        <Button onClick={this.handleCustomRoute.bind(this)}>
+          自定义路由 测试
+        </Button>
+        <Button onClick={this.handleCustomRoute.bind(this)}
+          className="sass-test"
+        >
+          sass文件全局注册 测试
+        </Button>
+        <Button className="iconfont-test iconfont down">
+          iconfont 测试
+          <Text>&#xe63d;</Text>
+        </Button>
+        <Button onClick={this.hanldeCompTest.bind(this, 'image')}>图片组件测试</Button>
+        <Button onClick={this.hanldeCompTest.bind(this, 'card')}>卡片组件测试</Button>
+        <Button onClick={this.hanldeCompTest.bind(this, 'default')}>缺省组件测试</Button>
       </View>
     )
   }

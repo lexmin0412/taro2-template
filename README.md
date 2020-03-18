@@ -1,48 +1,64 @@
 # Taro 2.0 项目模版
 
-> 说明：master 分支跟随 taro 最新稳定版分支而更新，当前基于taro 2.0，基于 taro 1.0 的项目模板请前往 `release-1.0.0` 分支获取，[点此前往](https://github.com/cathe-zhang/taro_template/tree/release-1.0.0/)
+> 说明：master 分支同步taro最新稳定版本更新，且会持续添加新功能，测试通过后会合并至release分支，当前版本基于taro 2.0；
+> 基于 taro 1.0 的项目模板请前往 `release-1.0.0` 分支获取，[点此前往](https://github.com/cathe-zhang/taro_template/tree/release-1.0.0/)
 
 ## 功能列表
 
-- 语言
+- 基础功能支持
   - [x] TypeScript
-  - [x] Sass
-  - [x] async/await支持
-- 状态管理
-  - [x] mobx
+  - [x] Sass，全局注入公用样式文件
+  - [x] UI库（taro-ui）
+  - [x] 状态管理（mobx）
+  - [x] 异步编程（async/await）
+  - [x] 引入字体（iconfont）
 - 接口请求
   - [x] request类
   - [x] 拦截器
     - [x] url拦截器
     - [x] header拦截器
     - [x] data拦截器
-  - [ ] 开发环境本地代理
-  - [ ] jsonp支持
+  - [x] 开发环境本地代理
+  - [x] jsonp支持
 - 调试
   - [x] vconsole（h5环境）
 - 工程化
   - [x] 全局变量
+  - [x] 编译前操作
+    - [x] 环境变量检查
+    - [x] 扫描components文件夹生成入口文件，实现一个页面只有一行组件引用的代码
+  - [x] 通过命令一键生成模版文件（页面、组件、样式、服务类、mobx状态管理）
+
+    优化计划：
+    - [x] 命令行交互获取文件名等参数
+    - [ ] 命令行上下键可选择要生成的文件类型等操作
+    - [ ] 迁移至taro-create-file 2.0版本，使用npm引入
+  - [ ] 接入taro模版源 http://taro-docs.jd.com/taro/docs/template.html
   - [ ] 底层页面组件，用于其他页面继承，实现类似vue原型绑定的功能
-  - [ ] 通过命令一键生成文件
+  - [ ] 自建组件库(taro-cui，待升级taro2.0)
+  - [ ] 自建工具类库（wtils）
 - 组件
-  - [ ] image 图片组件 提供错误处理、loading过渡、查看大图等功能
+  - [x] image 图片组件 提供错误处理、loading过渡、查看大图等功能
   - [ ] imgUploader 图片上传组件 基于image 提供上传图片、图片数量限制、删除图片、查看大图等功能
   - [ ] paging 分页提示组件 将scrollerLoader, scrollerEndMessage合并成一个组件，减少判断
-  - [ ] card 卡片组件 提供圆角、阴影功能，可自定义类名、样式，包括背景色、圆角、宽高，内外边距
+  - [x] card 卡片组件 提供圆角、阴影功能，可自定义类名、样式（圆角及内外边距）
   - [ ] 基础弹窗组件，可选择弹窗方式，包括中间弹窗、底部弹窗，可自定义关闭按钮
   - [ ] 倒计时组件，可自定义结束时间、自定义倒计时长、是否展示天，自定义item样式
   - [ ] 按钮组件，可自定义类名、自定义宽高、背景色、圆角、positionType
+  - [x] 缺省组件 可自定义图片、文字、宽高
 - 工具类
+  - [x] img.ts 图片处理类（如拼接url、预览等）
   - [x] mp.ts 小程序独有api封装（如检查更新）
-  - [x] toast.ts loading/toast api封装简化
   - [x] page.ts 页面工具类，实现获取页面路由、跳转等功能
+  - [x] toast.ts loading/toast api封装简化
   
 ## TODO
 
 - [x] 完善文件结构，实现1.0版本的所有功能
 - [ ] Hooks重构
-- [ ] README更新，如dva改成mobx
+- [ ] 升级之后的README更新
 - [ ] 根据2.0迁移指南进行优化 https://nervjs.github.io/taro/docs/migrate-to-2.html
+- [ ] 研究拦截器在每次发起request时执行的可行性
 
 ## 升级问题处理
 
@@ -54,6 +70,27 @@
 
 - https://nervjs.github.io/taro/docs/async-await.html#docsNav
 - https://nervjs.github.io/taro/docs/migrate-to-2.html
+
+## 优化
+
+### taro-ui 样式引入
+
+```scss
+// app.scss
+
+// 方式1: 一次性引入所有样式
+@import '~taro-ui/dist/style/index.scss';
+
+// 方式2: 在使用到新的组件时才引入
+@import "~taro-ui/dist/style/components/noticeBar.scss";
+@import "~taro-ui/dist/style/components/tag.scss"
+```
+
+对于上面的情况，如果在项目中只使用到了 taro-ui 中的 Button 和 Tag 组件，打包后的 app.css 体积从 210kb 减少到 53kb，只要打包后生成的app.css 文件小于210kb，那么这种引入方式就是值得的。
+
+### 官方优化指南
+
+- [最佳实践](https://nervjs.github.io/taro/docs/best-practice.html#%E7%BB%99%E7%BB%84%E4%BB%B6%E8%AE%BE%E7%BD%AE-defaultprops)
 
 ## 不想百度的操作
 
@@ -87,7 +124,7 @@
 
 ![项目结构](./structure.png)
 
-## Setup
+## Start
 
 ```zsh
 # 获取模版
