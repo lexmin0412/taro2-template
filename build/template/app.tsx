@@ -1,8 +1,8 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { Provider } from '@tarojs/mobx'
-import Index from './pages/index'
+import Index from '~/pages/index'
 
-import counterStore from './store/counter'
+import store from '~/store'
 import { checkUpdate } from '~/utils/mp'
 
 import './app.scss'
@@ -15,13 +15,8 @@ import './app.scss'
 
 // h5非生产环境添加vconsole
 if (process.env.TARO_ENV === 'h5' && process.env.NODE_ENV !== 'pro') {
-	const VConsole = require('vconsole')
-	new VConsole()
-}
-
-// mobx store
-const store = {
-  counterStore
+  const VConsole = require('vconsole')
+  new VConsole()
 }
 
 class App extends Component {
@@ -33,15 +28,9 @@ class App extends Component {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
+  // @ts-ignore
   config: Config = {
-    pages: [
-      'pages/index/index',
-      'pages/lab/index',
-      'pages/lab/hooks',
-      'pages/lab/comp',
-      'pages/user/index',
-      'pages/common/imgPreview'
-    ],
+    pages: [],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
@@ -49,49 +38,51 @@ class App extends Component {
       navigationBarTextStyle: 'black'
     },
     tabBar: {
-			color: '#969BA0',
-			selectedColor: '#333333',
-			backgroundColor: '#ffffff',
+      color: '#969BA0',
+      selectedColor: '#333333',
+      backgroundColor: '#ffffff',
       list: [
-				{
-					iconPath: 'assets/images/icon/icon_tabbar_goods_default.png',
-					selectedIconPath:
-						'assets/images/icon/icon_tabbar_goods_selected.png',
-					pagePath: 'pages/index/index',
-					text: '首页'
+        {
+          iconPath: 'assets/images/icon/icon_tabbar_goods_default.png',
+          selectedIconPath:
+            'assets/images/icon/icon_tabbar_goods_selected.png',
+          pagePath: 'pages/index/index',
+          text: '首页'
         },
         {
-					iconPath: 'assets/images/icon/icon_tabbar_goods_default.png',
-					selectedIconPath:
-						'assets/images/icon/icon_tabbar_goods_selected.png',
-					pagePath: 'pages/lab/index',
-					text: '实验室'
+          iconPath: 'assets/images/icon/icon_tabbar_goods_default.png',
+          selectedIconPath:
+            'assets/images/icon/icon_tabbar_goods_selected.png',
+          pagePath: 'pages/lab/index',
+          text: '实验室'
         },
-				{
-					iconPath: 'assets/images/icon/icon_tabbar_goods_default.png',
-					selectedIconPath:
-						'assets/images/icon/icon_tabbar_goods_selected.png',
-					pagePath: 'pages/user/index',
-					text: '我的'
-				},
+        {
+          iconPath: 'assets/images/icon/icon_tabbar_goods_default.png',
+          selectedIconPath:
+            'assets/images/icon/icon_tabbar_goods_selected.png',
+          pagePath: 'pages/user/index',
+          text: '我的'
+        },
       ]
     }
   }
 
-  componentDidMount () {}
+  componentDidMount() { }
 
-  componentDidShow () {
+  componentDidShow() {
     // 检查更新
-		checkUpdate()
+    checkUpdate()
   }
 
-  componentDidHide () {}
+  componentDidHide() { }
 
-  componentDidCatchError () {}
+  componentDidCatchError(err) {
+    console.error('catch error', err)
+  }
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
-  render () {
+  render() {
     return (
       <Provider store={store}>
         <Index />

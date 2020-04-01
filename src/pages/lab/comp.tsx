@@ -1,27 +1,79 @@
 /**
- * 组件演示
+ * 底层基础组件，用于其他页面和组件继承
  */
 
 import { ComponentType } from 'react'
-import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Button } from '@tarojs/components'
+import Taro from '@tarojs/taro'
+import { View, Button, Input } from '@tarojs/components'
 import { observer, inject } from '@tarojs/mobx'
 
-import { Card, TImage, Nodata } from '~/components'
+import BaseComponent from '~/components/BaseComponent/BaseComponent'
+import {
+  Card,
+  TImage,
+  Modal,
+  TButton,
+  Countdown,
+  TImageUploader,
+  HDMap,
+  Tabs
+} from '~/components'
 
-import { PageStateProps, PageState } from './comp'
 import './comp.scss'
+
+/**
+ * 页面props
+ */
+type PageStateProps = {
+  /**
+   * 子元素
+   */
+  children?: any;
+  common: any;
+}
+
+/**
+ * 页面state
+ */
+type PageState = {
+  type: string;
+  imageList: Array<string>;
+  hasMore: boolean;
+  showPaging: boolean;
+  modalVisible: boolean;
+  modalType: 'center' | 'bottom'
+}
 
 interface Comp {
   props: PageStateProps;
   state: PageState;
 }
 
-@inject('counterStore')
+@inject('common')
 @observer
-class Comp extends Component {
-  config: Config = {
-    navigationBarTitleText: '组件演示'
+class Comp extends BaseComponent {
+
+  constructor(props) {
+    super(props)
+    this._setTitle('底层基础组件，用于其他页面和组件继承')
+    this.state = {
+      type: 'image',
+      imageList: [
+        'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1584433500&di=b0d1428f12e1cdea17f4d8e667298aad&src=http://cdn2.image.apk.gfan.com/asdf/PImages/2014/12/26/211610_2d6bc9db3-77eb-4d80-9330-cd5e95fa091f.png',
+        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584537201012&di=50279a8b6a931992f1610cac5653c469&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fc75c10385343fbf233e9732cb27eca8064388ffc.jpg',
+        'https://ss0.bd2sdsdfsdtatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1584433500&di=b0d1428f12e1cdea17f4d8e667298aad&src=http://cdn2.image.apk.gfan.com/asdf/PImages/2014/12/26/211610_2d6bc9db3-77eb-4d80-9330-cd5e95fa091f.png',
+        'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1584433500&di=b0d1428f12e1cdea17f4d8e667298aad&src=http://cdn2.image.apk.gfan.com/asdf/PImages/2014/12/26/211610_2d6bc9db3-77eb-4d80-9330-cd5e95fa091f.png',
+        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584537201012&di=50279a8b6a931992f1610cac5653c469&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fc75c10385343fbf233e9732cb27eca8064388ffc.jpg',
+        'https://ss0.bd2sdsdfsdtatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1584433500&di=b0d1428f12e1cdea17f4d8e667298aad&src=http://cdn2.image.apk.gfan.com/asdf/PImages/2014/12/26/211610_2d6bc9db3-77eb-4d80-9330-cd5e95fa091f.png',
+        'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1584433500&di=b0d1428f12e1cdea17f4d8e667298aad&src=http://cdn2.image.apk.gfan.com/asdf/PImages/2014/12/26/211610_2d6bc9db3-77eb-4d80-9330-cd5e95fa091f.png',
+        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584537201012&di=50279a8b6a931992f1610cac5653c469&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fc75c10385343fbf233e9732cb27eca8064388ffc.jpg',
+        'https://ss0.bd2sdsdfsdtatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1584433500&di=b0d1428f12e1cdea17f4d8e667298aad&src=http://cdn2.image.apk.gfan.com/asdf/PImages/2014/12/26/211610_2d6bc9db3-77eb-4d80-9330-cd5e95fa091f.png',
+      ],
+      hasMore: true,
+      showPaging: true,
+      modalVisible: false,
+      modalType: 'center'
+    }
   }
 
   // 监听mobx状态变化
@@ -35,11 +87,103 @@ class Comp extends Component {
     })
   }
 
+  onReachBottom() {
+    console.log('reachBottom')
+    const { showPaging } = this.state
+    if ( !showPaging ) {
+      this.setState({
+        showPaging: true
+      })
+    }
+    this.queryData()
+  }
+
+  queryData() {
+    const { imageList } = this.state
+    setTimeout(() => {
+      if ( imageList.length <= 20 ) {
+        this.setState({
+          imageList: this.state.imageList.concat(['https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1584433500&di=b0d1428f12e1cdea17f4d8e667298aad&src=http://cdn2.image.apk.gfan.com/asdf/PImages/2014/12/26/211610_2d6bc9db3-77eb-4d80-9330-cd5e95fa091f.png',
+          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584537201012&di=50279a8b6a931992f1610cac5653c469&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fc75c10385343fbf233e9732cb27eca8064388ffc.jpg',
+          'https://ss0.bd2sdsdfsdtatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1584433500&di=b0d1428f12e1cdea17f4d8e667298aad&src=http://cdn2.image.apk.gfan.com/asdf/PImages/2014/12/26/211610_2d6bc9db3-77eb-4d80-9330-cd5e95fa091f.png'])
+        })
+      } else {
+        this.setState({
+          hasMore: false,
+        })
+      }
+    }, 1000);
+  }
+
+  /**
+   * 展示弹窗
+   * @param type 类型
+   */
+  showModal(type) {
+    this.setState({
+      modalVisible: true,
+      modalType: type
+    })
+  }
+
+  /**
+   * 图片数组变更回调
+   */
+  handleImgListChange(list) {
+    console.log('comp page list', list)
+    this.setState({
+      imgList: list
+    })
+  }
+
+  /**
+   * 测试变表单验证方法
+   */
+  handleValidate() {
+    const funcs = this._validator.funcs
+    const validResult = this._validator.validate({
+      phone: [
+        {
+          errMsg: '请输入手机号',
+          test: funcs.NOT_EMPTY
+        },
+        {
+          errMsg: '测试单字段多验证规则提示',
+          test: val => val.length === 11
+        },
+      ],
+      address: [
+        {
+          errMsg: '请输入地址',
+          test: funcs.NOT_EMPTY
+        }
+      ]
+    }, true, this.state)
+    if (validResult.success) {
+      this._toast.show('验证成功')
+    } else {
+      console.error('validResult', validResult)
+    }
+  }
+
+  handleInput(type, e) {
+    this.setState({
+      [type]: e.detail.value
+    })
+  }
+
+  // markerclick
+  handleMarkerClick(event) {
+    console.log('e', event)
+  }
+
+  // tabChange
+  handleTabChange(e) {
+
+  }
+
   render () {
-    const { type } = this.state
-    const imageList = ['https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1584433500&di=b0d1428f12e1cdea17f4d8e667298aad&src=http://cdn2.image.apk.gfan.com/asdf/PImages/2014/12/26/211610_2d6bc9db3-77eb-4d80-9330-cd5e95fa091f.png',
-    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584537201012&di=50279a8b6a931992f1610cac5653c469&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fc75c10385343fbf233e9732cb27eca8064388ffc.jpg',
-    'https://ss0.bd2sdsdfsdtatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1584433500&di=b0d1428f12e1cdea17f4d8e667298aad&src=http://cdn2.image.apk.gfan.com/asdf/PImages/2014/12/26/211610_2d6bc9db3-77eb-4d80-9330-cd5e95fa091f.png']
+    const { type, imageList, hasMore, modalVisible, modalType } = this.state
     return (
       <View className='comp-page'>
         <View className="comp-page-title">组件演示</View>
@@ -66,7 +210,7 @@ class Comp extends Component {
           </View>
         }
         {
-          type === 'card' &&
+          type === 'card' || type === 'paging' &&
           <View className="demo-page-item">
             卡片组件
             {
@@ -86,11 +230,143 @@ class Comp extends Component {
           </View>
         }
 
-{
+        {
           type === 'default' &&
           <View className="demo-page-item">
             缺省组件
             <Nodata />
+          </View>
+        }
+
+        {
+          type === 'paging' &&
+          <View className="demo-page-item">
+            缺省组件
+            <Paging hasMore={hasMore} showPaging={true} />
+          </View>
+        }
+
+        {
+          type === 'modal' &&
+          <View className="demo-page-item">
+            弹窗组件
+            <Button onClick={this.showModal.bind(this, 'center')}>点击展示弹窗（居中弹窗）</Button>
+            <Button onClick={this.showModal.bind(this, 'bottom')}>点击展示弹窗（底部弹窗）</Button>
+            <Modal
+              positionType={modalType}
+              title="弹窗标题"
+              visible={modalVisible}
+            >
+              <View>这是内容这是内容这是内容这是内
+                容这是内容这是内容这是内容这是内容这是内容这是内容
+              </View>
+            </Modal>
+          </View>
+        }
+
+        {
+          type === 'button' &&
+          <View className="demo-page-item">
+            按钮组件
+            <TButton
+              wrap={false}
+              text="按钮文字"
+              backgroundColor="#45aafa"
+              width="80%"
+              wrapperHeight={140}
+            />
+          </View>
+        }
+
+        {
+          type === 'countdown' &&
+          <View className="demo-page-item">
+            倒计时组件
+            <Countdown
+              // leftTime={500}
+              endTime={1584720000000}
+              acmlDateToHours={false}
+            />
+          </View>
+        }
+
+        {
+          type === 'imgUploader' &&
+          <View className="demo-page-item">
+            图片上传组件
+            <TImageUploader
+              defaultList={[
+                'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1584433500&di=b0d1428f12e1cdea17f4d8e667298aad&src=http://cdn2.image.apk.gfan.com/asdf/PImages/2014/12/26/211610_2d6bc9db3-77eb-4d80-9330-cd5e95fa091f.png',
+                'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584537201012&di=50279a8b6a931992f1610cac5653c469&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fc75c10385343fbf233e9732cb27eca8064388ffc.jpg',
+                'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584537201012&di=50279a8b6a931992f1610cac5653c469&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fc75c10385343fbf233e9732cb27eca8064388ffc.jpg',
+              ]}
+              onChange={this.handleImgListChange.bind(this)}
+            />
+          </View>
+        }
+
+        {
+          type === 'formValidate' &&
+          <View className="demo-page-item">
+            表单验证演示
+            <Button onClick={this.handleValidate.bind(this)}>验证</Button>
+            <Input type="number" placeholder="请输入手机号" onInput={this.handleInput.bind(this, 'phone')} />
+            <Input type="text" placeholder="请输入地址" onInput={this.handleInput.bind(this, 'address')} />
+          </View>
+        }
+
+        {
+          type === 'map' &&
+          <View className="demo-page-item">
+            地图组件演示
+            <HDMap
+              mapContainerId="webgl2"
+              center={{
+                latitude: 28.207326,
+                longitude: 112.882385,
+              }}
+              markers={[
+                {
+                  position: {
+                    latitude: 28.207326,
+                    longitude: 112.882385
+                  },
+                  properties: {
+                    title: "marker1"
+                  }
+                },
+                {
+                  position: {
+                    latitude: 28.208326,
+                    longitude: 112.882385
+                  },
+                  properties: {
+                    title: "marker2"
+                  }
+                },
+              ]}
+              onMarkerClick={this.handleMarkerClick.bind(this)}
+            />
+          </View>
+        }
+
+        {
+          type === 'tabs' &&
+          <View className="demo-page-item">
+            标签页组件演示
+            <Tabs
+              list={[
+                {
+                  text: '文字',
+                  id: 1
+                },
+                {
+                  text: '文2',
+                  id: 2
+                },
+              ]}
+              onChange={this.handleTabChange.bind(this)}
+            />
           </View>
         }
       </View>

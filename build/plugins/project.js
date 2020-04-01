@@ -1,17 +1,13 @@
 /**
- * 用于在taro之前根据环境生成不同的project.config.json
+ * 用于在项目打包之前根据环境生成不同的project.config.json
  */
 
 const fs = require('fs')
 
-console.log('构建环境标识', process.argv[2])
+console.log('准备生成project.config.json文件')
 
-// 获取node project.js传过来的环境参数
-const env = process.argv[2]
-console.log('开始编译小程序project.config.json', env)
-
-const appid = require(`./../config/${env}`).defineConstants.APP_CONF.APPID
-console.log('appid', appid)
+const appid = require(`./../../config/${process.env.NODE_ENV}`).defineConstants.APP_CONF.APPID
+console.log('小程序appid', appid)
 
 const projectConfig = `
 {
@@ -59,3 +55,4 @@ const projectConfig = `
 `
 
 fs.writeFileSync('./project.config.json', projectConfig)
+console.log('写入project.config.json文件成功')

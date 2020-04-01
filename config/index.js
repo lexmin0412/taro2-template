@@ -24,6 +24,7 @@ const config = {
     '~/models': path.resolve(__dirname, '..', 'src/models'),
     '~/pages': path.resolve(__dirname, '..', 'src/pages'),
     '~/services': path.resolve(__dirname, '..', 'src/services'),
+    '~/store': path.resolve(__dirname, '..', 'src/store'),
     '~/styles': path.resolve(__dirname, '..', 'src/styles'),
     '~/utils': path.resolve(__dirname, '..', 'src/utils'),
   },
@@ -31,8 +32,10 @@ const config = {
   sass: {
     // 全局注入scss文件
     resource: [
+      'src/styles/classes.scss',
       'src/styles/mixin.scss',
-      'src/styles/theme.scss'
+      'src/styles/theme.scss',
+      'src/styles/var.scss'
     ],
     // 指定项目根目录，这样在resource字段中就不需要重复书写path.resolve了
     projectDirectory: path.resolve(__dirname, '..')

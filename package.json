@@ -8,15 +8,17 @@
     "typescript": true,
     "css": "sass"
   },
+  "author": "cathe-zhang",
+  "license": "MIT",
   "scripts": {
     "dev:mp": "npm run build:mp -- --watch",
     "dev:mp-sit": "npm run build:mp-sit -- --watch",
     "dev:mp-uat": "npm run build:mp-uat -- --watch",
-    "dev:mp-pro": "node build/project.js pro && taro build --type weapp -- --watch",
-    "build:mp": "node build/project.js dev && taro build --type weapp --env dev",
-    "build:mp-sit": "node build/project.js sit && taro build --type weapp --env sit",
-    "build:mp-uat": "node build/project.js uat && taro build --type weapp --env uat",
-    "build:mp-pro": "node build/project.js pro && taro build --type weapp --env pro",
+    "dev:mp-pro": "taro build --type weapp -- --watch",
+    "build:mp": "taro build --type weapp --env dev",
+    "build:mp-sit": "taro build --type weapp --env sit",
+    "build:mp-uat": "taro build --type weapp --env uat",
+    "build:mp-pro": "taro build --type weapp --env pro",
     "dev:h5": "npm run build:h5 -- --watch",
     "dev:h5-sit": "npm run build:h5-sit -- --watch",
     "dev:h5-uat": "npm run build:h5-uat -- --watch",
@@ -25,10 +27,19 @@
     "build:h5-sit": "taro build --type h5 --env sit",
     "build:h5-uat": "taro build --type h5 --env uat",
     "build:h5-pro": "taro build --type h5 --env pro",
-    "template": "node template/index.js"
+    "template": "plop --plopfile generators/index.js"
   },
-  "author": "",
-  "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@tarojs/components": "2.0.6",
     "@tarojs/components-qa": "2.0.6",
@@ -66,12 +77,16 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
-    "eslint": "^5.16.0",
+    "eslint": "^6.8.0",
     "eslint-config-taro": "2.0.6",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^1.6.1",
     "eslint-plugin-taro": "2.0.6",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.9",
+    "plop": "^2.6.0",
+    "standard": "^14.3.3",
     "stylelint": "9.3.0",
     "stylelint-config-taro-rn": "2.0.6",
     "stylelint-taro-rn": "2.0.6",
