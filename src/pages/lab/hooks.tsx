@@ -6,14 +6,16 @@ import { observer, inject } from '@tarojs/mobx'
 import './hooks.scss'
 
 type PageStateProps = {
-  common: {
-    counter: number,
-    increment: Function,
+  counter: {
+    counter: number
+    increment: Function
+    decrement: Function
+    incrementAsync: Function
   }
 }
 
 interface Index {
-  props: PageStateProps;
+  props: PageStateProps
 }
 
 const Index = () => (

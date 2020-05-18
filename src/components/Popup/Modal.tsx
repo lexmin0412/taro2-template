@@ -3,9 +3,8 @@
   */
 
  import { ComponentType } from 'react'
- import Taro from '@tarojs/taro'
+ import Taro, { Component } from '@tarojs/taro'
  import { View } from '@tarojs/components'
- import BaseComponent from '~/components/BaseComponent/BaseComponent'
 
  import './Modal.scss'
 
@@ -50,7 +49,7 @@
    state: IState;
  }
 
- class Modal extends BaseComponent {
+class Modal extends Component {
 
    static defaultProps: IProps = {
      positionType: 'bottom',

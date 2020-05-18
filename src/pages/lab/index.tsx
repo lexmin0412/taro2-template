@@ -11,24 +11,26 @@ import Toast from '~/utils/toast'
 import './index.scss'
 
 type PageStateProps = {
-  common: {
-    counter: number,
-    increment: Function,
+  counter: {
+    counter: number
+    increment: Function
+    decrement: Function
+    incrementAsync: Function
   }
 }
 
 type PageState = {
-  testState: string;
-  phoneNumber: string;  // 手机号
-  mobileText: string;  // 手机号归属地展示文字
+  testState: string
+  phoneNumber: string  // 手机号
+  mobileText: string  // 手机号归属地展示文字
 }
 
 interface Index {
-  props: PageStateProps;
-  state: PageState;
+  props: PageStateProps
+  state: PageState
 }
 
-@inject('common')
+@inject('counter')
 @observer
 class Index extends Component {
 
@@ -66,7 +68,7 @@ class Index extends Component {
   componentDidHide() { }
 
   async handleJSONPTest() {
-    let result = await QQMapWSService.geocoder({
+    const result = await QQMapWSService.geocoder({
       location: `28.2532,112.87887`,
       get_poi: 0,
     })
@@ -74,7 +76,7 @@ class Index extends Component {
   }
 
   async handleProxyText() {
-    let result = await LianouService.queryDiseaseByDrugName({
+    const result = await LianouService.queryDiseaseByDrugName({
       ComName: '阿莫西林胶囊'
     })
     console.log('result', result)
@@ -108,7 +110,7 @@ class Index extends Component {
         <AtNoticebar>taro-ui组件演示：通告栏</AtNoticebar>
         <AtTag size='small'>taro-ui组件演示：标签</AtTag>
         <Button onClick={this.handleJSONPTest.bind(this)}
-          className="button-jsonp"
+          className='button-jsonp'
         >
           jsonp 演示
         </Button>
@@ -119,11 +121,11 @@ class Index extends Component {
           自定义路由 演示
         </Button>
         <Button onClick={this.handleCustomRoute.bind(this)}
-          className="sass-test"
+          className='sass-test'
         >
           sass文件全局注册 演示
         </Button>
-        <Button className="iconfont-test iconfont down">
+        <Button className='iconfont-test iconfont down'>
           iconfont 演示
           <Text>&#xe63d;</Text>
         </Button>
@@ -136,8 +138,7 @@ class Index extends Component {
         <Button onClick={this.hanldeCompTest.bind(this, 'countdown')}>倒计时组件演示</Button>
         <Button onClick={this.hanldeCompTest.bind(this, 'imgUploader')}>图片上传组件演示</Button>
         <Button onClick={this.hanldeCompTest.bind(this, 'formValidate')}>表单验证演示</Button>
-        <Button onClick={this.hanldeCompTest.bind(this, 'map')}>地图组件演示</Button>
-        <Button onClick={this.hanldeCompTest.bind(this, 'tabs')}>标签页组件演示</Button>
+        <Button onClick={this.hanldeCompTest.bind(this, 'tabs')}>tab标签页演示</Button>
       </View>
     )
   }
