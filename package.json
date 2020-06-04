@@ -103,7 +103,7 @@
 		"stylelint-order": "^4.0.0",
 		"stylelint-scss": "^3.17.1",
 		"stylelint-taro-rn": "2.2.6",
-		"taro-plugin-check-env": "^0.0.5",
+		"taro-plugin-check-env": "0.0.5",
 		"taro-plugin-init-app": "0.0.4",
 		"typescript": "^3.0.1",
 		"vconsole": "^3.3.4",
