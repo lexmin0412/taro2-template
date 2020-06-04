@@ -41,7 +41,32 @@ const config = {
 	},
 	sourceRoot: 'src',
 	outputRoot: 'dist',
-	plugins: ['taro_plugins'],
+	plugins: [
+		[
+			'taro-plugin-check-env',
+			{
+				ENV_LIST: {
+					CUSTOMIZE_ENV: '自定义环境变量',
+					API_HOST: '接口API域名',
+					APPID: '小程序APPID',
+					API_MAP_QQ: '腾讯地图API/WebService域名',
+					KEY_MAP_QQ: '腾讯地图Key',
+				},
+			},
+		],
+		[
+			'taro-plugin-init-app',
+			{
+				homeRoute: 'pages/home/index',
+			},
+		],
+	],
+	// presets: [
+	// 	[ 'taro_plugins', {
+	// 		homeRoute: 'pages/home/index',
+	// 	} ],
+	// 	'taro-plugin-check-env'
+	// ],
 	babel: {
 		sourceMap: true,
 		presets: [

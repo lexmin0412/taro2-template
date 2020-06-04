@@ -92,6 +92,7 @@
 		"eslint-plugin-taro": "2.2.6",
 		"husky": "^4.2.5",
 		"lint-staged": "^10.0.9",
+		"node-plop": "^0.26.0",
 		"plop": "^2.6.0",
 		"prettier": "^2.0.5",
 		"pretty-quick": "^2.0.1",
@@ -102,7 +103,8 @@
 		"stylelint-order": "^4.0.0",
 		"stylelint-scss": "^3.17.1",
 		"stylelint-taro-rn": "2.2.6",
-		"taro_plugins": "0.0.3",
+		"taro-plugin-check-env": "^0.0.5",
+		"taro-plugin-init-app": "0.0.4",
 		"typescript": "^3.0.1",
 		"vconsole": "^3.3.4",
 		"webpack-bundle-analyzer": "^3.6.1"
