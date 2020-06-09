@@ -42,9 +42,13 @@ const config = {
 	sourceRoot: 'src',
 	outputRoot: 'dist',
 	plugins: [
+		// 小程序project.config.json文件生成插件
+		'taro-plugin-mp',
 		[
+			// 环境变量检查插件
 			'taro-plugin-check-env',
 			{
+				// 配置需要检查的环境变量
 				ENV_LIST: {
 					CUSTOMIZE_ENV: '自定义环境变量',
 					API_HOST: '接口API域名',
@@ -55,9 +59,18 @@ const config = {
 			},
 		],
 		[
+			// 入口文件初始化插件
 			'taro-plugin-init-app',
 			{
+				// 配置首页路由
 				homeRoute: 'pages/home/index',
+				// 需要打包的页面
+				includePages: [
+					'pages/home/index',
+					'pages/classify/index',
+					'pages/classify/searchResult',
+					'pages/details/index',
+				],
 			},
 		],
 	],
