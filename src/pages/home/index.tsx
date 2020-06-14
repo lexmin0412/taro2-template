@@ -3,6 +3,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button, Text, Input } from '@tarojs/components'
 import { observer, inject } from '@tarojs/mobx'
 import { AtNoticebar, AtTag } from 'taro-ui'
+import { Paging } from 'taro-ui-hd'
 
 import QQMapWSService from '~/services/qqMap/ws.service'
 import LianouService from '~/services/hydee/lianou.service'
@@ -113,6 +114,7 @@ class Index extends Component {
 				<Button onClick={this.incrementAsync}>Add Async</Button>
 				<Button onClick={this.incrementAsync}>{testState}</Button>
 				<Text>{counter}</Text>
+				<Paging hasMore showPaging />
 			</View>
 		)
 	}
