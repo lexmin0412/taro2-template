@@ -1,7 +1,8 @@
 # Taro 2.x 项目模版
 
-> 说明：master 分支同步taro最新稳定版本更新，且会持续添加新功能，测试通过后会合并至release分支，当前版本基于taro 2.2.3；
-> 基于 taro 1.x 的项目模板请前往 `release-1.0.0` 分支获取，[点此前往](https://github.com/cathe-zhang/taro_template/tree/release-1.0.0/)
+> 说明：master 分支同步taro最新稳定版本更新，且会持续添加新功能，测试通过后会合并至release分支，当前版本基于taro 2.2.7；
+> [1.x版本模版点此前往](https://github.com/cathe-zhang/taro_template/tree/release-1.x/)
+> [3.x版本模版点此前往](https://github.com/cathe-zhang/taro_template/tree/release-3.x/)
 
 ## 导航
 
@@ -62,10 +63,10 @@
     - [x] 根据不同的环境变量生成不同的project.config.json（小程序端）
   - [x] 通过plop插件一键生成模版文件（页面、组件、样式、服务类、mobx状态管理）
   - [x] 底层组件，用于页面和组件继承，实现类似vue原型绑定的功能
-  - [ ] git hooks
-    - [ ] eslint
-    - [ ] stylelint
-    - [ ] prettier
+  - [x] git hooks
+    - [x] eslint
+    - [x] stylelint
+    - [x] prettier
     - [x] commit lint
   - [ ] 引入自建组件库(taro-cui，适配taro2.0版本开发中)
   - [x] 引入自建工具类库（wtils）
