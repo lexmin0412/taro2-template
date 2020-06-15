@@ -47,6 +47,7 @@
 		"@tarojs/mobx": "2.2.7",
 		"@tarojs/mobx-h5": "2.2.7",
 		"@tarojs/router": "2.2.7",
+		"@tarojs/runner-utils": "2.2.7",
 		"@tarojs/taro": "2.2.7",
 		"@tarojs/taro-alipay": "2.2.7",
 		"@tarojs/taro-h5": "2.2.7",
@@ -64,7 +65,7 @@
 		"qrcode": "^1.4.4",
 		"regenerator-runtime": "0.11.1",
 		"taro-ui": "^2.3.1",
-		"taro-ui-hd": "0.0.1",
+		"taro-ui-hd": "0.0.2",
 		"wtils": "^0.2.0"
 	},
 	"devDependencies": {
