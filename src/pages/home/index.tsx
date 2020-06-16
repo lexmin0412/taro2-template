@@ -3,6 +3,15 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button, Text, Input } from '@tarojs/components'
 import { observer, inject } from '@tarojs/mobx'
 import { AtNoticebar, AtTag } from 'taro-ui'
+import {
+	HdPaging,
+	HdBackToTop,
+	HdCard,
+	HdCountdown,
+	HdModal,
+	HdNodata,
+	HdTabs,
+} from 'taro-ui-hd'
 
 import QQMapWSService from '~/services/qqMap/ws.service'
 import LianouService from '~/services/hydee/lianou.service'
@@ -20,6 +29,10 @@ type PageStateProps = {
 type PageState = {
 	testState: string
 	mobileText: string // 手机号归属地展示文字
+	/**
+	 * 弹窗
+	 */
+	modalVisible: boolean
 }
 
 interface Index {
@@ -33,6 +46,7 @@ class Index extends Component {
 	state = {
 		testState: '1212',
 		mobileText: '',
+		modalVisible: true,
 	}
 
 	/**
@@ -84,11 +98,29 @@ class Index extends Component {
 		console.log('result', result)
 	}
 
+	handleBackToTop() {}
+
+	/**
+	 * 弹窗关闭
+	 */
+	handleModalClose() {
+		this.setState({
+			modalVisible: false,
+		})
+	}
+
+	/**
+	 * handleTabChange
+	 */
+	handleTabChange(e) {
+		console.log('handleTabChange', e)
+	}
+
 	render() {
 		const {
 			counter: { counter },
 		} = this.props
-		const { testState, mobileText } = this.state
+		const { testState, mobileText, modalVisible } = this.state
 		console.log('mobileText', mobileText)
 		return (
 			<View className='index'>
@@ -113,6 +145,40 @@ class Index extends Component {
 				<Button onClick={this.incrementAsync}>Add Async</Button>
 				<Button onClick={this.incrementAsync}>{testState}</Button>
 				<Text>{counter}</Text>
+				<HdPaging hasMore />
+				<HdBackToTop
+					visible
+					color='#ff4a4a'
+					onClick={this.handleBackToTop.bind(this)}
+				/>
+				<HdCard>这是卡片内容哦</HdCard>
+				<HdCountdown leftTime={50000} />
+				<HdModal
+					positionType='center'
+					title='弹窗标题'
+					visible={modalVisible}
+					onClose={this.handleModalClose.bind(this)}
+					mask
+					maskClosable
+					showfooter
+				>
+					这是弹窗内容
+				</HdModal>
+				<HdTabs
+					currentTab={1}
+					list={[
+						{
+							text: 'tab1',
+							id: 1,
+						},
+						{
+							text: 'tab2',
+							id: 2,
+						},
+					]}
+					onChange={this.handleTabChange.bind(this)}
+				/>
+				<HdNodata height={600} text='测试缺省文字' />
 			</View>
 		)
 	}

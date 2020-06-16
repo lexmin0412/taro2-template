@@ -171,6 +171,8 @@ const config = {
 				},
 			},
 		},
+		// 配置需要额外的编译的源码模块 经过这一配置之后，代码中引入的处于 `node_modules/taro-ui/` 路径下的源码文件均会经过taro的编译处理。
+		esnextModules: ['taro-ui', 'taro-cui'],
 	},
 }
 
