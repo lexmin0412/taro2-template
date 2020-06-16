@@ -107,7 +107,7 @@
 		"stylelint-taro-rn": "2.2.7",
 		"taro-plugin-check-env": "0.0.7",
 		"taro-plugin-init-app": "0.1.6",
-		"taro-plugin-mp": "0.0.3",
+		"taro-plugin-mp": "0.0.6",
 		"typescript": "^3.0.1",
 		"vconsole": "^3.3.4",
 		"webpack-bundle-analyzer": "^3.6.1"
