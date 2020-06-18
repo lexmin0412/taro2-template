@@ -27,6 +27,8 @@ const config = {
 		'~/styles': path.resolve(__dirname, '..', 'src/styles'),
 		'~/utils': path.resolve(__dirname, '..', 'src/utils'),
 	},
+	sourceRoot: 'src',
+	outputRoot: 'dist',
 	// sass配置
 	sass: {
 		// 全局注入scss文件
@@ -39,9 +41,21 @@ const config = {
 		// 指定项目根目录，这样在resource字段中就不需要重复书写path.resolve了
 		projectDirectory: path.resolve(__dirname, '..'),
 	},
-	sourceRoot: 'src',
-	outputRoot: 'dist',
+	uglify: {
+		enable: true,
+		// config: {
+		// 	// 配置项同 https://github.com/mishoo/UglifyJS2#minify-options
+		// }
+		config: {
+			nameCache: null, // or specify a name cache object
+			toplevel: false,
+			ie8: false,
+			warnings: false,
+		},
+	},
 	plugins: [
+		'@tarojs/plugin-uglify',
+		'@tarojs/plugin-sass',
 		// 小程序project.config.json文件生成插件
 		'taro-plugin-mp',
 		[
