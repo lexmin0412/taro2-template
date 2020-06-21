@@ -12,7 +12,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev:mp": "npm run build:mp -- --watch",
-		"dev:mp-test": "npm run build:mp-sit -- --watch",
+		"dev:mp-test": "npm run build:mp-test -- --watch",
 		"dev:mp-uat": "npm run build:mp-uat -- --watch",
 		"dev:mp-pro": "taro build --type weapp -- --watch",
 		"build:mp": "taro build --type weapp --env dev",
@@ -108,8 +108,8 @@
 		"stylelint-scss": "^3.17.1",
 		"stylelint-taro-rn": "2.2.9",
 		"taro-plugin-check-env": "0.0.7",
-		"taro-plugin-init-app": "0.2.0",
-		"taro-plugin-mp": "0.0.6",
+		"taro-plugin-init-app": "0.2.2",
+		"taro-plugin-mp": "0.0.8",
 		"typescript": "^3.0.1",
 		"vconsole": "^3.3.4",
 		"webpack-bundle-analyzer": "^3.6.1"
