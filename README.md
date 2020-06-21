@@ -1,6 +1,6 @@
 # Taro 2.x 项目模版
 
-> 说明：master 分支同步 taro 最新稳定版本更新，且会持续添加新功能，测试通过后会合并至 release 分支，当前版本基于 taro 2.2.9；
+> 说明：项目包含基于 taro 不同版本的模版，目前已有 1.x/2.x/3.x 版本，master 分支为当前 taro 稳定版本模板，当前为 2.x
 
 > [1.x 版本模版点此前往](https://github.com/cathe-zhang/taro_template/tree/release-1.x/)
 
