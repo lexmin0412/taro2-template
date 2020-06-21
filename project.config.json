@@ -1,6 +1,6 @@
 {
 	"miniprogramRoot": "./dist",
-	"projectname": "taro-template",
+	"projectname": "Taro2.x项目模板",
 	"description": "taro2.0项目模板",
 	"appid": "wx0b32dc740be4b1f5",
 	"setting": {
