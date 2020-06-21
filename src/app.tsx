@@ -3,7 +3,7 @@
  */
 import Taro, { Component, Config } from '@tarojs/taro'
 import { Provider } from '@tarojs/mobx'
-import Index from '~/pages/index'
+import Index from '~/pages/home/index'
 import store from '~/store'
 import { checkUpdate } from '~/utils/mp'
 import './app.scss'
@@ -52,7 +52,7 @@ class App extends Component {
 				{
 					iconPath: 'assets/images/icon/icon_tabbar_goods_default.png',
 					selectedIconPath: 'assets/images/icon/icon_tabbar_goods_selected.png',
-					pagePath: 'pages/index/index',
+					pagePath: 'pages/home/index',
 					text: '首页',
 				},
 				{
