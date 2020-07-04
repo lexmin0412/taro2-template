@@ -76,7 +76,7 @@
     - [x] stylelint
     - [x] prettier
     - [x] commit lint
-  - [ ] 引入自建组件库(taro-cui，适配 taro2.0 版本开发中)
+  - [x] 引入自建组件库([taro-ui-hd](https://github.com/cathe-zhang/taro-ui-hd))
   - [x] 引入自建工具类库（wtils）
   - [ ] 接入 Taro 模版源 http://taro-docs.jd.com/taro/docs/template.html
   - [ ] 提交 Taro 物料市场 https://taro-ext.jd.com/
