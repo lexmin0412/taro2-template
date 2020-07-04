@@ -7,6 +7,9 @@ node_modules/
 project.config.json
 package-lock.json
 
+# 本地local配置文件
+config/local.js
+
 # 以下文件打包时会自动生成
 # src/app.tsx
 src/pages/routes.js
