@@ -65,10 +65,9 @@
 - 工程化
   - [x] 全局变量
   - [x] 插件
-    - [x] 环境变量检查
-    - [x] 扫描 components 文件夹生成入口文件
-    - [x] 扫描 pages 文件夹生成路由列表及 app.tsx 文件
-    - [x] 根据不同的环境变量生成不同的 project.config.json（小程序端）
+    - [x] [环境变量检查 - taro-plugin-check-env](https://github.com/cathe-zhang/taro-plugin-check-env)
+    - [x] [pages/components 文件扫描，入口文件初始化 - taro-plugin-init-app](https://github.com/cathe-zhang/taro-plugin-init-app)
+    - [x] [根据不同的环境变量生成不同的 project.config.json（小程序端） - taro-plugin-mp](https://github.com/cathe-zhang/taro-plugin-mp)
   - [x] 通过 plop 插件一键生成模版文件（页面、组件、样式、服务类、mobx 状态管理）
   - [x] 底层组件，用于页面和组件继承，实现类似 vue 原型绑定的功能
   - [x] git hooks
