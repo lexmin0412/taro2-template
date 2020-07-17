@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const chalk = require('chalk')
+const plugins = require('./plugin/index')
 
 const argV = process.argv
 const CUSTOMIZE_ENV = argV[5].split('=')[1]
@@ -59,47 +60,7 @@ const config = {
 			warnings: false,
 		},
 	},
-	plugins: [
-		'@tarojs/plugin-uglify',
-		'@tarojs/plugin-sass',
-		// 小程序project.config.json文件生成插件
-		'taro-plugin-mp',
-		[
-			// 环境变量检查插件
-			'taro-plugin-check-env',
-			{
-				// 配置需要检查的环境变量
-				ENV_LIST: {
-					CUSTOMIZE_ENV: '自定义环境变量',
-					API_HOST: '接口API域名',
-					APPID: '小程序APPID',
-					API_MAP_QQ: '腾讯地图API/WebService域名',
-					KEY_MAP_QQ: '腾讯地图Key',
-				},
-			},
-		],
-		[
-			// 入口文件初始化插件
-			'taro-plugin-init-app',
-			{
-				// 配置首页路由
-				homeRoute: 'pages/home/index',
-				// 需要打包的页面
-				includePages: [
-					'pages/home/index',
-					'pages/classify/index',
-					'pages/classify/searchResult',
-					'pages/details/index',
-				],
-			},
-		],
-	],
-	// presets: [
-	// 	[ 'taro_plugins', {
-	// 		homeRoute: 'pages/home/index',
-	// 	} ],
-	// 	'taro-plugin-check-env'
-	// ],
+	plugins: plugins,
 	babel: {
 		sourceMap: true,
 		presets: [
@@ -117,7 +78,7 @@ const config = {
 			[
 				'transform-runtime',
 				{
-					// async/await支持 替代taro1.0的tarojs/await
+					// async/await支持 替代taro1.x的tarojs/await
 					helpers: false,
 					polyfill: false,
 					regenerator: true,
