@@ -6,6 +6,7 @@ node_modules/
 .DS_Store
 project.config.json
 package-lock.json
+yarn.lock
 
 # 本地local配置文件
 config/local.js
