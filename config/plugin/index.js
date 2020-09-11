@@ -13,6 +13,10 @@ const pluginList = [
 				API_MAP_QQ: '腾讯地图API/WebService域名',
 				KEY_MAP_QQ: '腾讯地图Key',
 			},
+			taroVersion: {
+				h5: '2.2.13',
+				weapp: '2.2.13',
+			},
 		},
 	],
 	[
