@@ -114,9 +114,9 @@
 		"stylelint-order": "^4.0.0",
 		"stylelint-scss": "^3.17.1",
 		"stylelint-taro-rn": "2.2.13",
-		"taro-plugin-check-env": "0.0.10",
-		"taro-plugin-init-app": "0.4.2",
-		"taro-plugin-mp": "0.0.8",
+		"taro-plugin-check-env": "0.0.11",
+		"taro-plugin-init-app": "0.4.3",
+		"taro-plugin-mp": "0.0.11",
 		"typescript": "^3.0.1",
 		"vconsole": "^3.3.4",
 		"webpack-bundle-analyzer": "^3.6.1"
