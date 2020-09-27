@@ -1,6 +1,6 @@
 name: Super-Linter
 
-# Run this workflow every time a new commit pushed to your repository
+# Run this workflow every time a new commit pushed to your repository 只要有新的commit被推送到仓库时都会触发
 on: push
 
 jobs:
