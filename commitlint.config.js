@@ -1,5 +1,5 @@
 module.exports = {
-	extends: [ '@commitlint/config-conventional' ],
+	extends: ['@commitlint/config-conventional'],
 	rules: {
 		'type-enum': [
 			2,
@@ -15,14 +15,15 @@ module.exports = {
 				'revert', // 回退
 				'perf', // 优化（代码或性能优化）
 				'build', // 项目打包相关(如build文件夹下编译插件的修改)
+				'chore', // 除以上类型之外的其他提交
 			],
 		],
-		'type-case': [ 0 ],
-		'type-empty': [ 0 ],
-		'scope-empty': [ 0 ],
-		'scope-case': [ 0 ],
-		'subject-full-stop': [ 0, 'never' ],
-		'subject-case': [ 0, 'never' ],
-		'header-max-length': [ 0, 'always', 72 ],
+		'type-case': [0],
+		'type-empty': [0],
+		'scope-empty': [0],
+		'scope-case': [0],
+		'subject-full-stop': [0, 'never'],
+		'subject-case': [0, 'never'],
+		'header-max-length': [0, 'always', 72],
 	},
 }
