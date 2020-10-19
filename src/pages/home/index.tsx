@@ -116,6 +116,12 @@ class Index extends Component {
 		console.log('handleTabChange', e)
 	}
 
+	handleOk() {
+		this.setState({
+			modalVisible: false,
+		})
+	}
+
 	render() {
 		const {
 			counter: { counter },
@@ -161,6 +167,7 @@ class Index extends Component {
 					mask
 					maskClosable
 					showfooter
+					onOk={this.handleOk.bind(this)}
 				>
 					这是弹窗内容
 				</HdModal>
