@@ -37,7 +37,8 @@ class App extends Component {
 			'pages/lab/hooks',
 			'pages/lab/index',
 			'pages/user/index',
-		], // 主包页面声明结束 注释用于判断结束行 勿动
+		],
+		subPackages: [], // 页面声明结束 注释用于判断结束行 勿动
 		window: {
 			backgroundTextStyle: 'light',
 			navigationBarBackgroundColor: '#fff',

@@ -1,20 +1,16 @@
 const path = require('path')
 const fs = require('fs')
 const chalk = require('chalk')
-const plugins = require('./plugin/index')
-
-const argV = process.argv
-const CUSTOMIZE_ENV = argV[5].split('=')[1]
-console.log('自定义环境变量', CUSTOMIZE_ENV)
+const plugins = require('./plugins/index')
 
 const config = {
 	projectName: 'Taro2.x项目模板',
 	date: '2020-3-10',
 	designWidth: 750,
 	deviceRatio: {
-		'640': 2.34 / 2,
-		'750': 1,
-		'828': 1.81 / 2,
+		640: 2.34 / 2,
+		750: 1,
+		828: 1.81 / 2,
 	},
 	defineConstants: {},
 	// 解析alias路径
@@ -158,27 +154,36 @@ const config = {
 }
 
 module.exports = function (merge) {
-	let exportConfig = {}
+	console.log('当前编译环境', process.env.BUILD_ENV)
 
-	if (!fs.existsSync(`config/${CUSTOMIZE_ENV}.js`)) {
+	const BUILD_ENV = process.env.BUILD_ENV
+
+	if (BUILD_ENV && !fs.existsSync(`config/${BUILD_ENV}.js`)) {
 		console.error(
 			chalk.red(
-				`当前运行 ${CUSTOMIZE_ENV} 环境，请先创建 config/${CUSTOMIZE_ENV}.js 后重试，配置文件内容请参考 https://github.com/cathe-zhang/taro-template/blob/master/README.md#开启本地调试`
+				`当前运行 ${BUILD_ENV} 环境，请先创建 config/${BUILD_ENV}.js 后重试，配置文件内容请参考 https://github.com/cathe-zhang/taro-template/blob/master/README.md#开启本地调试`
 			)
 		)
 		return
 	}
 
-	if (CUSTOMIZE_ENV === 'pro') {
-		exportConfig = merge({}, config, require('./pro'))
-	} else if (CUSTOMIZE_ENV === 'test') {
-		exportConfig = merge({}, config, require('./test'))
-	} else if (CUSTOMIZE_ENV === 'uat') {
-		exportConfig = merge({}, config, require('./uat'))
-	} else if (CUSTOMIZE_ENV === 'local') {
-		exportConfig = merge({}, config, require('./local'))
-	} else {
-		exportConfig = merge({}, config, require('./dev'))
+	let currentConfig = {}
+	switch (BUILD_ENV) {
+		case 'local':
+			currentConfig = require('./local')
+			break
+		case 'dev':
+			currentConfig = require('./dev')
+			break
+		case 'test':
+			currentConfig = require('./test')
+			break
+		case 'uat':
+			currentConfig = require('./uat')
+			break
+		default:
+			currentConfig = require('./pro')
+			break
 	}
-	return exportConfig
+	return merge({}, config, currentConfig)
 }
