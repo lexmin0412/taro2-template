@@ -2,9 +2,9 @@
 
 > 说明：项目包含基于 taro 不同版本的模版，目前已有 1.x/2.x/3.x 版本，master 分支为当前 taro 稳定版本模板，当前为 2.x
 
-> [1.x 版本模版点此前往](https://github.com/cathe-zhang/taro_template/tree/release-1.x/)
+> [1.x 版本模版点此前往](https://github.com/cathe-zhang/taro_template/tree/1.x/)
 
-> [3.x 版本模版点此前往](https://github.com/cathe-zhang/taro_template/tree/release-3.x/)
+> [3.x 版本模版点此前往](https://github.com/cathe-zhang/taro_template/tree/3.x/)
 
 ## 相关项目
 
