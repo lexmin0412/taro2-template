@@ -14,8 +14,8 @@ const pluginList = [
 				KEY_MAP_QQ: '腾讯地图Key',
 			},
 			taroVersion: {
-				h5: '2.2.13',
-				weapp: '2.2.13',
+				h5: '2.2.15',
+				weapp: '2.2.15',
 			},
 		},
 	],
