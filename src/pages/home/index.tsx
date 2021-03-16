@@ -13,8 +13,9 @@ import {
 	HdTabs,
 } from 'taro-ui-hd'
 
+import Tabbar from '~/components/Tabbar/Tabbar'
 import QQMapWSService from '~/services/qqMap/ws.service'
-import LianouService from '~/services/hydee/lianou.service'
+import LianouService from '~/services/root/drug.service'
 import './index.scss'
 
 type PageStateProps = {
@@ -58,6 +59,13 @@ class Index extends Component {
 	 */
 	config: Config = {
 		navigationBarTitleText: '首页',
+	}
+
+	componentDidShow() {
+		console.error('into componentDidshow at home index', APP_CONF.API_HOST)
+	}
+	componentDidHide() {
+		console.error('into componentDidhide at home index')
 	}
 
 	increment = () => {
@@ -186,6 +194,7 @@ class Index extends Component {
 					onChange={this.handleTabChange.bind(this)}
 				/>
 				<HdNodata height={600} text='测试缺省文字' />
+				<Tabbar />
 			</View>
 		)
 	}
