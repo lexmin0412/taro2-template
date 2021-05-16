@@ -467,15 +467,6 @@ import './index.scss'
 - [typescript](https://www.tslang.cn/docs/handbook/basic-types.html)
 - [scss](https://www.sass.hk/)
 
-## 后续工作
-
-- [ ] Taro 中的 hooks 与 mobx 结合？
-- [ ] 根据 2.0 迁移指南进行优化 https://nervjs.github.io/taro/docs/migrate-to-2.html
-- [ ] 组件使用外部样式类 https://nervjs.github.io/taro/docs/component-style.html#%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E7%B1%BB
-- [ ] render-props 融合 https://nervjs.github.io/taro/docs/render-props.html
-- [ ] context 融合 https://nervjs.github.io/taro/docs/context.html
-- [ ] 研究拦截器在每次发起 request 时执行的可行性
-
 ## 问题记录
 
 ### Taro 升级问题
@@ -515,14 +506,6 @@ import './index.scss'
 ```
 
 对于上面的情况，如果在项目中只使用到了 taro-ui 中的 Button 和 Tag 组件，打包后的 app.css 体积从 210kb 减少到 53kb，只要打包后生成的 app.css 文件小于 210kb，那么这种引入方式就是值得的。
-
-## 不想百度的操作
-
-### 切换 npm 源
-
-```shell
-npm config set registry https://registry.npmjs.org/
-```
 
 ## 项目文档
 
