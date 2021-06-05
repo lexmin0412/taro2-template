@@ -2,13 +2,13 @@
 
 > 说明：项目包含基于 taro 不同版本的模版，目前已有 1.x/2.x/3.x 版本，master 分支为当前 taro 稳定版本模板，当前为 2.x
 
-> [1.x 版本模版点此前往](https://github.com/cathe-zhang/taro_template/tree/1.x/)
+> [1.x 版本模版点此前往](https://github.com/lexmin0412/taro-template/tree/1.x/)
 
-> [3.x 版本模版点此前往](https://github.com/cathe-zhang/taro_template/tree/3.x/)
+> [3.x 版本模版点此前往](https://github.com/lexmin0412/taro-template/tree/3.x/)
 
 ## 相关项目
 
-基于这个模版，开发了 [taro-ui-hd](https://github.com/cathe-zhang/taro-ui-hd) 这个 UI 库，而在这个模版中又引用了 taro-ui-hd 作为首页的演示 demo，emm...
+基于这个模版，开发了 [taro-xui](https://github.com/lexmin0412/taro-xui) 这个 UI 库，而在这个模版中又引用了 taro-xui 作为首页的演示 demo，emm...
 
 禁止套娃...
 
@@ -65,9 +65,9 @@
 - 工程化
   - [x] 全局变量
   - [x] 插件
-    - [x] [环境变量检查 - taro-plugin-check-env](https://github.com/cathe-zhang/taro-plugin-check-env)
-    - [x] [pages/components 文件扫描，入口文件初始化 - taro-plugin-init-app](https://github.com/cathe-zhang/taro-plugin-init-app)
-    - [x] [根据不同的环境变量生成不同的 project.config.json（小程序端） - taro-plugin-mp](https://github.com/cathe-zhang/taro-plugin-mp)
+    - [x] [环境变量检查 - taro-plugin-check-env](https://github.com/lexmin0412/taro-plugin-check-env)
+    - [x] [pages/components 文件扫描，入口文件初始化 - taro-plugin-init-app](https://github.com/lexmin0412/taro-plugin-init-app)
+    - [x] [根据不同的环境变量生成不同的 project.config.json（小程序端） - taro-plugin-mp](https://github.com/lexmin0412/taro-plugin-mp)
   - [x] 通过 plop 插件一键生成模版文件（页面、组件、样式、服务类、mobx 状态管理）
   - [x] 底层组件，用于页面和组件继承，实现类似 vue 原型绑定的功能
   - [x] git hooks
@@ -75,7 +75,7 @@
     - [x] stylelint
     - [x] prettier
     - [x] commit lint
-  - [x] 引入自建组件库([taro-ui-hd](https://github.com/cathe-zhang/taro-ui-hd))
+  - [x] 引入自建组件库([taro-xui](https://github.com/lexmin0412/taro-xui))
   - [x] 引入自建工具类库（wtils）
   - [ ] 接入 Taro 模版源 http://taro-docs.jd.com/taro/docs/template.html
   - [ ] 提交 Taro 物料市场 https://taro-ext.jd.com/
@@ -110,7 +110,7 @@
 
 ```zsh
 # 获取模版
-git clone https://github.com/cathe-zhang/taro_template.git
+git clone https://github.com/lexmin0412/taro-template.git
 # 进入项目文件夹
 cd taro_template
 # 安装依赖
