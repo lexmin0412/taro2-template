@@ -1,9 +1,9 @@
 # Taro 2.x 项目模版
 
-> 说明：项目包含基于 taro 不同版本的模版，目前已有 1.x/2.x/3.x 版本，master 分支为当前 taro 稳定版本模板，当前为 2.x
-
+> 说明：项目包含基于 taro 不同版本的模版，目前已有 1.x/2.x/3.x 版本，master 分支为当前 taro 稳定版本模板，当前为 2.x。
+>
 > [1.x 版本模版点此前往](https://github.com/lexmin0412/taro-template/tree/1.x/)
-
+>
 > [3.x 版本模版点此前往](https://github.com/lexmin0412/taro-template/tree/3.x/)
 
 ## 相关项目
@@ -77,8 +77,8 @@
     - [x] commit lint
   - [x] 引入自建组件库([taro-xui](https://github.com/lexmin0412/taro-xui))
   - [x] 引入自建工具类库（wtils）
-  - [ ] 接入 Taro 模版源 http://taro-docs.jd.com/taro/docs/template.html
-  - [ ] 提交 Taro 物料市场 https://taro-ext.jd.com/
+  - [ ] 接入 Taro 模版源 <http://taro-docs.jd.com/taro/docs/template.html>
+  - [ ] 提交 Taro 物料市场 <https://taro-ext.jd.com/>
 - 组件
   - [x] Card 卡片组件 提供圆角、阴影功能，可自定义类名、样式（圆角及内外边距）
   - [x] Countdown 倒计时组件，可自定义结束时间、自定义倒计时长、是否展示天，自定义 item 样式
@@ -135,17 +135,17 @@ yarn dev:mp
 yarn <mode>:<platform>-<env>
 ```
 
-`mode`，编译模式：
+`mode` ，编译模式：
 
 - dev 本地开发
 - build 服务器部署
 
-`platform`，运行环境
+`platform` ，运行环境
 
 - mp 微信小程序
 - h5 h5
 
-`env`，服务器环境标识，不同标识对应着不同的配置项，如接口 host
+`env` ，服务器环境标识，不同标识对应着不同的配置项，如接口 host
 
 - sit 测试环境
 - uat 预发环境
@@ -176,28 +176,11 @@ yarn build-mo-pro  # 部署 小程序 生产环境
 
 module.exports = {
 	defineConstants: {
-		LOCATION_APIKEY: JSON.stringify('U1P3Z-RCU46-K2YS3-EMVSY-JI6RJ-3WBUM'),
 		APP_CONF: {
-			CUSTOMIZE_ENV: '"local"',
-			API_HOST: '"/api"',
-			APPID: '"touristappid"',
-			API_MAP_QQ: '"https://apis.map.qq.com"',
-			KEY_MAP_QQ: '"UQPBZ-RCU36-K2YS3-EMV6Y-JI6JJ-3WBUM"',
-		},
-	},
-	h5: {
-		devServer: {
-			port: '9999',
-			proxy: {
-				'/api': {
-					target: 'https://m.test.xxx.com',
-					changeOrigin: true,
-					ws: false,
-					pathRewrite: {
-						'^/api': ``,
-					},
-				},
-			},
+			API_HOST: JSON.stringify('https://xx.com/'),
+			APPID: JSON.stringify('this_is_my_tourist_appid'),
+			API_MAP_QQ: JSON.stringify('https://apis.map.qq.com'),
+			KEY_MAP_QQ: JSON.stringify('UQPBZ-RCU36-K2YS3-EMV6Y-JI6JJ-3WBUM'),
 		},
 	},
 }
@@ -213,7 +196,7 @@ module.exports = {
 
 1. **通过命令生成文件**
 
-对于文件的新建操作，在项目中也预置了命令，开发者只需在命令行中输入 `yarn template`，然后根据相关提示输入对应的配置项，即可生成对应的文件，目前支持以下四种文件的快捷创建：
+对于文件的新建操作，在项目中也预置了命令，开发者只需在命令行中输入 `yarn template` ，然后根据相关提示输入对应的配置项，即可生成对应的文件，目前支持以下四种文件的快捷创建：
 
 - 页面（同时生成对应的 scss 和 ts 类型生命文件）
 - 组件（同时生成对应的 scss 文件）
@@ -242,19 +225,18 @@ import { Line, TImage } from '~/components
 ```js
 // config/index.js
 {
-	sass: {
-    // 全局注入scss文件
-    resource: [
-      'src/styles/classes.scss',
-      'src/styles/mixin.scss',
-      'src/styles/theme.scss',
-      'src/styles/var.scss'
-    ],
-    // 指定项目根目录，这样在resource字段中就不需要重复书写path.resolve了
-    projectDirectory: path.resolve(__dirname, '..')
-  },
+    sass: {
+        // 全局注入scss文件
+        resource: [
+            'src/styles/classes.scss',
+            'src/styles/mixin.scss',
+            'src/styles/theme.scss',
+            'src/styles/var.scss'
+        ],
+        // 指定项目根目录，这样在resource字段中就不需要重复书写path.resolve了
+        projectDirectory: path.resolve(__dirname, '..')
+    },
 }
-
 ```
 
 作用是全局注入了 mixin.scss 和 theme.scss，这样做之后，在项目内的所有 scss 文件中，可以直接使用这两个文件中的所有特性而不需要引入对应的文件，如果有更多的公用文件注入，只需要修改这里的配置项即可（注意：修改后需要重启项目才能生效）。（**TODO：后续需要在编译插件中扫描 styles 文件夹，省去配置项追加的操作**）
@@ -280,13 +262,13 @@ import { Line, TImage } from '~/components
 
 service, 也就是我们的服务模块，用于统一存放后端接口定义，供页面调用。
 
-**`service`文件设计规范**
+** `service` 文件设计规范**
 
 由于同一个接口被不同页面调用调用的可能性非常高，服务模块的结构需要依照后端接口来设计，如项目内既包含了公司后端项目的接口请求，又需要请求第三方接口，那么 service 模块就要分成两个大的模块，大的模块下面再根据接口模块划分来划分小的 service 文件。
 
-如一个接口路径为 `https://xxx.normal.com/webapi/account/queryBalanceAccount`, 用途是查询用户账户余额，那么这个接口在 service 模块的结构就应该表现为：
+如一个接口路径为 `https://xxx.normal.com/webapi/account/queryBalanceAccount` , 用途是查询用户账户余额，那么这个接口在 service 模块的结构就应该表现为：
 
-首先分为两个大的模块，下一层是后台的项目，最后根据后台接口模块命名一个 `xxx.service.ts`, xxx 是后台的模块名称。只要一个接口是在后台接口项目中的这个子模块，那么在前端就应该定义在相应的 service 文件下。
+首先分为两个大的模块，下一层是后台的项目，最后根据后台接口模块命名一个 `xxx.service.ts` , xxx 是后台的模块名称。只要一个接口是在后台接口项目中的这个子模块，那么在前端就应该定义在相应的 service 文件下。
 
 上面的示例接口设计结构如下：
 
@@ -294,7 +276,7 @@ service, 也就是我们的服务模块，用于统一存放后端接口定义�
 ├── services        服务根文件夹
 |   ├── inside        内部服务
 |   ├── qqMap         腾讯地图api接口
-|   		├── ws.service.ts    webservice服务
+|     ├── ws.service.ts    webservice服务
 ```
 
 ##### 直接调用 service 获取数据
@@ -321,18 +303,18 @@ class Index extends Component {
 		console.log('result', result)
 	}
 
-	render() {
-		const { locationData } = this.state
-		return (
-			<View className='home-index-page'>
-				{locationData && (
-					<View>
-						当前位置：{locationData.latitude}，{locationData.longitude}
-					</View>
-				)}
-			</View>
-		)
-	}
+ render() {
+  const { locationData } = this.state
+  return (
+		<View className='home-index-page'>
+			{locationData && (
+				<View>
+					当前位置：{locationData.latitude}，{locationData.longitude}
+				</View>
+			)}
+		</Vew>
+  )
+ }
 }
 ```
 
@@ -477,8 +459,8 @@ import './index.scss'
 
 解决方案：
 
-- https://nervjs.github.io/taro/docs/async-await.html#docsNav
-- https://nervjs.github.io/taro/docs/migrate-to-2.html
+- <https://nervjs.github.io/taro/docs/async-await.html#docsNav>
+- <https://nervjs.github.io/taro/docs/migrate-to-2.html>
 
 ### 其他
 
