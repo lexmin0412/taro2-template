@@ -8,7 +8,52 @@
 		"typescript": true,
 		"css": "sass"
 	},
-	"author": "cathe-zhang",
+	"homepage": "https://github.com/lexmin0412/taro-template",
+	"repository": {
+		"type": "github",
+		"url": "https://github.com/lexmin0412/taro-template",
+		"branch": "2.x"
+	},
+	"bugs": {
+		"url": "https://github.com/lexmin0412/taro-template/issues",
+		"email": "zhangle_media@hotmail.com"
+	},
+	"keywords": [
+		"taro",
+		"template",
+		"taro-template",
+		"project-template",
+		"react",
+		"h5",
+		"weapp"
+	],
+	"author": "lexmin0412",
+	"maintainers": [
+		{
+			"name": "lexmin0412",
+			"email": "zhangle_media@hotmail.com",
+			"url": "https://github.com/lexmin0412"
+		}
+	],
+	"contributors": [
+		{
+			"name": "lexmin0412",
+			"email": "zhangle_media@hotmail.com",
+			"url": "https://github.com/lexmin0412"
+		}
+	],
+	"engines": {
+		"node": "12.18.0"
+	},
+	"bundledDependencies": [
+		"@tarojs/taro"
+	],
+	"os": [
+		"windows",
+		"macOS"
+	],
+	"typings": "global.d.ts",
+	"markdown": "github",
 	"license": "MIT",
 	"scripts": {
 		"dev:mp": "npm run build:mp -- --watch",
