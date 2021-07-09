@@ -47,7 +47,7 @@ if (process.env.TARO_ENV === 'weapp') {
 // 获取当前项目的taro版本号
 const taroVersion = getTaroVersion()
 
-// 小程序使用的是2.2.11，taro2.2.8以上的版本官方将uglify/scss插件被分离出了两个插件，所以这里需要插入
+// taro2.2.8以上的版本官方将uglify/scss插件被分离出了两个插件，所以这里需要插入
 const shouldPushUglifyNSassPlugin = compareVersion(taroVersion, '2.2.8') >= 0
 console.log(
 	'当前taro版本',
