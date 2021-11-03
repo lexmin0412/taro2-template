@@ -48,10 +48,6 @@
 	"bundledDependencies": [
 		"@tarojs/taro"
 	],
-	"os": [
-		"windows",
-		"macOS"
-	],
 	"typings": "global.d.ts",
 	"markdown": "github",
 	"license": "MIT",
