@@ -1,25 +1,28 @@
-name: Super-Linter
-
-# Run this workflow every time a new commit pushed to your repository 只要有新的commit被推送到仓库时都会触发
-on: push
+name: 构建 H5 应用
+on:
+  push:
+    branches:
+      - 2.x
 
 jobs:
-  # Set the job key. The key is displayed as the job name
-  # when a job name is not provided
-  super-lint:
-    # Name the Job
-    name: Lint code base
-    # Set the type of machine to run on
+  main:
     runs-on: ubuntu-latest
-
     steps:
-      # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: 拉取仓库代码
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
 
-      # Runs the Super-Linter action
-      - name: Run Super-Linter
-        uses: github/super-linter@v3
-        env:
-          DEFAULT_BRANCH: release-2.x
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: 安装依赖
+      run: |
+        npm install
+
+		- name: 构建应用
+        npm run build:h5-pro
+
+    - name: 部署应用
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: dist
