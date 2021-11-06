@@ -77,6 +77,8 @@ class App extends Component {
 	}
 	componentDidCatchError(err) {
 		console.error('catch error', err)
+		console.error('catch error', 'catch error', err)
+		console.log(123)
 	}
 	// 在 App 类中的 render() 函数没有实际作用
 	// 请勿修改此函数
