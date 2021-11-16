@@ -19,40 +19,11 @@
 		"jsxFactory": "Taro.createElement",
 		"allowJs": true,
 		"resolveJsonModule": true,
-		"typeRoots": [
-			"node_modules/@types",
-			"global.d.ts"
-		],
+		"typeRoots": ["node_modules/@types", "global.d.ts"],
 		"paths": {
-			"~/": [ "src/" ],
-			"~/*": [ "src/*" ],
-			"~/assets": [ "src/assets/" ],
-			"~/assets/*": [ "src/assets/*" ],
-			"~/components": [ "src/components/" ],
-			"~/components/*": [ "src/components/*" ],
-			"~/constants": [ "src/constants/" ],
-			"~/constants/*": [ "src/constants/*" ],
-			"~/enums": [ "src/enums/" ],
-			"~/enums/*": [ "src/enums/*" ],
-			"~/interceptors": [ "src/interceptors/" ],
-			"~/interceptors/*": [ "src/interceptors/*" ],
-			"~/interfaces": [ "src/interfaces/" ],
-			"~/interfaces/*": [ "src/interfaces/*" ],
-			"~/models/": [ "src/models/" ],
-			"~/models/*": [ "src/models/*" ],
-			"~/pages/": [ "src/pages/" ],
-			"~/pages/*": [ "src/pages/*" ],
-			"~/services": [ "src/services/" ],
-			"~/services/*": [ "src/services/*" ],
-			"~/styles": [ "src/styles/" ],
-			"~/styles/*": [ "src/styles/*" ],
-			"~/utils": [ "src/utils/" ],
-			"~/utils/*": [ "src/utils/*" ],
+			"~/*": ["src/*"]
 		}
 	},
-	"exclude": [
-		"node_modules",
-		"dist"
-	],
+	"exclude": ["node_modules", "dist"],
 	"compileOnSave": false
 }
