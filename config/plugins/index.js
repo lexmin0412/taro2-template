@@ -34,6 +34,7 @@ const pluginList = [
 			],
 		},
 	],
+	'@tarox/plugin-generate',
 ]
 
 // 小程序添加 taro-plugin-mp 插件

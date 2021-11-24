@@ -74,8 +74,7 @@
 		"build:h5-dev": "cross-env BUILD_ENV=dev taro build --type h5",
 		"build:h5-test": "cross-env BUILD_ENV=test taro build --type h5",
 		"build:h5-uat": "cross-env BUILD_ENV=uat taro build --type h5",
-		"build:h5-pro": "cross-env BUILD_ENV=pro taro build --type h5",
-		"template": "plop --plopfile generators/index.js"
+		"build:h5-pro": "cross-env BUILD_ENV=pro taro build --type h5"
 	},
 	"husky": {
 		"hooks": {
@@ -125,6 +124,7 @@
 		"@tarojs/plugin-uglify": "2.2.18",
 		"@tarojs/webpack-runner": "2.2.18",
 		"@tarox/plugin-check-env": "1.0.0-alpha.4",
+		"@tarox/plugin-generate": "^0.0.1-alpha.1",
 		"@tarox/plugin-init-app": "1.0.0-alpha.5",
 		"@tarox/plugin-mp": "1.0.0-alpha.4",
 		"@types/react": "^16.4.6",
