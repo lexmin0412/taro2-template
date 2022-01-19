@@ -51,7 +51,7 @@ class Tabbar extends Component<{}, IState> {
 
 	render() {
 		const { tabList } = this.state
-		return (
+		return false ? (
 			<View className='tabbar-comp'>
 				{tabList.map(tabItem => {
 					return (
@@ -64,6 +64,8 @@ class Tabbar extends Component<{}, IState> {
 					)
 				})}
 			</View>
+		) : (
+			<View></View>
 		)
 	}
 }
