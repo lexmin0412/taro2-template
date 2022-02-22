@@ -98,7 +98,7 @@ const config = {
 		},
 	},
 	h5: {
-		publicPath: './',
+		publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
 		staticDirectory: 'static',
 		router: {
 			mode: 'browser', // 或者是 'hash'
