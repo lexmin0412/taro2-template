@@ -1,45 +1,21 @@
-import { ComponentType } from 'react'
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { observer, inject } from '@tarojs/mobx'
+import { observer } from '@tarojs/mobx'
 
 import Tabbar from '~/components/Tabbar/Tabbar'
 import './index.scss'
 
-/**
- * 页面props
- */
-type PageStateProps = {
-	counter: any
+export const UserIndex = () => {
+	return (
+		<View className='index'>
+			user index page
+			<Tabbar />
+		</View>
+	)
 }
 
-/**
- * 页面state
- */
-type PageState = {}
+UserIndex.config = {
+	navigationBarTitleText: '我的',
+} as Config
 
-interface UserIndex {
-	props: PageStateProps
-	state: PageState
-}
-
-@inject('counter')
-@observer
-class UserIndex extends Component {
-	config: Config = {
-		navigationBarTitleText: '我的',
-	}
-
-	componentDidMount() {}
-
-	render() {
-		return (
-			<View className='index'>
-				user index page
-				<Tabbar />
-			</View>
-		)
-	}
-}
-
-export default UserIndex as ComponentType
+export default observer(UserIndex)

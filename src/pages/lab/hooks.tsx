@@ -1,29 +1,13 @@
-import { ComponentType } from 'react'
-import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
-import { observer, inject } from '@tarojs/mobx'
+import Taro, { Config } from '@tarojs/taro'
+import { View } from '@tarojs/components'
+import { observer } from '@tarojs/mobx'
 
 import './hooks.scss'
 
-type PageStateProps = {
-  counter: {
-    counter: number
-    increment: Function
-    decrement: Function
-    incrementAsync: Function
-  }
-}
+const Index = () => <View className='index'>hooks</View>
 
-interface Index {
-  props: PageStateProps
-}
+Index.config = {
+	navigationBarTitleText: 'hooks',
+} as Config
 
-const Index = () => (
-  <View className='index'>
-    <Button onClick={this.increment}>设置</Button>
-    <Button onClick={this.increment}>嘿嘿</Button>
-  </View>
-)
-
-
-export default Index  as ComponentType
+export default observer(Index)
