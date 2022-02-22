@@ -1,10 +1,10 @@
 # Taro 2.x 项目模版
 
-> 说明：项目包含基于 taro 不同版本的模版，目前已有 1.x/2.x/3.x 版本，master 分支为当前 taro 稳定版本模板，当前为 2.x。
+> 说明：当前仓库长期维护基于 Taro2.x 的模版，同时还提供了 1.x 和 3.x 版本(基于React)可供选择。
 >
 > [1.x 版本模版点此前往](https://github.com/lexmin0412/taro-template/tree/1.x/)
 >
-> [3.x 版本模版点此前往](https://github.com/lexmin0412/taro-template/tree/3.x/)
+> 3.x 版本为独立仓库，[点此前往](https://github.com/lexmin0412/taro3-react-template)
 
 ## 相关项目
 
