@@ -142,7 +142,7 @@ module.exports = function (merge) {
 	if (BUILD_ENV && !fs.existsSync(`config/${BUILD_ENV}.js`)) {
 		console.error(
 			chalk.red(
-				`当前运行 ${BUILD_ENV} 环境，请先创建 config/${BUILD_ENV}.js 后重试，配置文件内容请参考 https://github.com/cathe-zhang/taro-template/blob/master/README.md#开启本地调试`
+				`当前运行 ${BUILD_ENV} 环境，请先创建 config/${BUILD_ENV}.js 后重试，配置文件内容请参考 https://github.com/lexmin0412/taro-template/blob/master/README.md#启动本地调试`
 			)
 		)
 		return
